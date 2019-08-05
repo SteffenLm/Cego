@@ -5,6 +5,13 @@
 		},
 		{
 			"path": "cego-app"
+		},
+		{
+			"path": "rest"
 		}
-	]
+	],
+	"settings": {
+		"phpcs.standard": "PSR2",
+		"php-cs-fixer.onsave": true
+	}
 }
