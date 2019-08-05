@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    Cego Count
+</mat-toolbar>
+<div class="m1">
+    <mat-toolbar color="primary" class="rt1"> Login </mat-toolbar>
+    <mat-card class="rt0">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column">
+            <mat-form-field appearance="outline">
+                <input formControlName="username" type="text" matInput>
+                <mat-label>Benutzername</mat-label>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Passwort</mat-label>
+                <input formControlName="password" type="password" matInput>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit"> Login </button>
+        </form>
+    </mat-card>
+</div>
