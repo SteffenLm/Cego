@@ -3,7 +3,7 @@ require './objects/user.php';
 require './core/json.php';
 
 $json = new JSON();
-$json->setHeader('api/login.php');
+$json->setHeader();
 
 $reqbody = json_decode(file_get_contents('php://input'), true);
 $reqUsername = $reqbody["username"];
