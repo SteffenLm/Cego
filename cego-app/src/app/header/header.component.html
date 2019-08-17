@@ -1,8 +1,12 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row class="pl-0">
+  <mat-toolbar-row class="pl-0 content-align">
     <button class="mx-4" mat-icon-button (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Cego Counter</span>
+    <span style="flex: 1 1 auto;" ></span>
+    <button mat-icon-button (click)="onLogout()">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>

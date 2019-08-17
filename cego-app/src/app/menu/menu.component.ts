@@ -43,7 +43,10 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuSubscription = this.mainService.menuClicked$.subscribe(
       () => { this.sideNavRef.toggle(); }
     );
-    this.mainHeight = window.innerHeight - 56;
+    // css optimize!
+    this.mainHeight = window.innerHeight - 64;
+    console.log(this.mainHeight);
+    console.log(window.innerHeight);
   }
 
   public ngOnDestroy(): void {

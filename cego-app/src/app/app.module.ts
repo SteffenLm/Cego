@@ -24,6 +24,9 @@ import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
 import { PlayersComponent } from './players/players.component';
 import { MenuEntryComponent } from './menu/menu-entry/menu-entry.component';
+import { LoginServiceService } from './login/login-service.service';
+import { AppAuthGuard } from './app-auth-guard.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,7 @@ import { MenuEntryComponent } from './menu/menu-entry/menu-entry.component';
     MatToolbarModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AppAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
