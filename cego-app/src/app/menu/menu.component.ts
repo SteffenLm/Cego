@@ -3,12 +3,32 @@ import { MainService } from '../main/main.service';
 import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
+interface MenuEntry {
+  icon: string;
+  text: string;
+}
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, OnDestroy {
+
+  public menuEntries: MenuEntry[] = [
+    {
+      icon: 'group',
+      text: 'Players'
+    },
+    {
+      icon: 'casino',
+      text: 'Games'
+    },
+    {
+      icon: 'person',
+      text: 'Profil'
+    }
+  ];
 
   public mainHeight = 512;
   public toggle = false;

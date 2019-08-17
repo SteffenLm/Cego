@@ -1,18 +1,7 @@
 <mat-sidenav-container [style.height.px]="mainHeight">
-  <mat-sidenav mode="over" #sidenav>
+  <mat-sidenav mode="over" #sidenav class="nav-bar-width">
     <div fxLayout="column">
-      <a mat-flat-button class="px-0">
-        <mat-icon>group</mat-icon>
-        Players
-      </a>
-      <a mat-flat-button class="px-0">
-        <mat-icon>casino</mat-icon>
-        Games
-      </a>
-      <a mat-flat-button class="px-0">
-        <mat-icon>person</mat-icon>
-        Profil
-      </a>
+      <app-menu-entry *ngFor="let menuEntry of this.menuEntries" icon="{{ menuEntry.icon}}" text="{{ menuEntry.text }}"></app-menu-entry>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

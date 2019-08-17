@@ -10,5 +10,4 @@ export class MainService {
   public clickMenu(): void {
     this.menuClicked.next();
   }
-  
 }

@@ -4,11 +4,11 @@ import { ServerLogin } from './login.model';
 import { LoginServiceService } from './login-service.service';
 
 @Component({
-  selector: 'app-app-login',
-  templateUrl: './app-login.component.html',
-  styleUrls: ['./app-login.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AppLoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 

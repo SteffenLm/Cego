@@ -12,7 +12,7 @@ export abstract class Api {
 
     public getRequest<T, U>(url: string): Observable<U> {
         return this.http.get<U>(`${environment.apiBackendUrl}/${url}`);
-    }    
+    }
 
     public putRequest<T, U>(url: string, body: T): Observable<U> {
         return this.http.put<U>(`${environment.apiBackendUrl}/${url}`, body);
