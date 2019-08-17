@@ -1,7 +1,7 @@
 <mat-sidenav-container [style.height.px]="mainHeight">
   <mat-sidenav mode="over" #sidenav class="nav-bar-width">
     <div fxLayout="column">
-      <app-menu-entry *ngFor="let menuEntry of this.menuEntries" icon="{{ menuEntry.icon}}" text="{{ menuEntry.text }}"></app-menu-entry>
+      <app-menu-entry *ngFor="let menuEntry of this.menuEntries" [entry]="menuEntry"></app-menu-entry>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

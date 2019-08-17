@@ -1,6 +1,6 @@
 <div fxLayout="row">
-    <a mat-flat-button class="px-0 width-100">
-        <mat-icon>{{this.icon}}</mat-icon>
-        {{this.text}}
+    <a mat-flat-button class="px-0 width-100" routerLink="{{ this.entry.link }}">
+        <mat-icon>{{ this.entry.icon }}</mat-icon>
+        {{ this.entry.text }}
     </a>
 </div>

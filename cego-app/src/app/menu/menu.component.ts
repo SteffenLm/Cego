@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MainService } from '../main/main.service';
+import { MenuEntry } from './menu.model';
 import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
-interface MenuEntry {
-  icon: string;
-  text: string;
-}
+
 
 @Component({
   selector: 'app-menu',
@@ -18,15 +16,18 @@ export class MenuComponent implements OnInit, OnDestroy {
   public menuEntries: MenuEntry[] = [
     {
       icon: 'group',
-      text: 'Players'
+      text: 'Players',
+      link: '/players'
     },
     {
       icon: 'casino',
-      text: 'Games'
+      text: 'Games',
+      link: '/games'
     },
     {
       icon: 'person',
-      text: 'Profil'
+      text: 'Profil',
+      link: '/profile'
     }
   ];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MenuEntry } from '../menu.model';
 
 @Component({
   selector: 'app-menu-entry',
@@ -7,8 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MenuEntryComponent implements OnInit {
 
-  @Input() public icon: string;
-  @Input() public text: string;
+  @Input() public entry: MenuEntry;
 
   constructor() { }
 
