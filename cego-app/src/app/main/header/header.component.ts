@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MainService } from '../main/main.service';
-import { LoginServiceService } from '../login/login-service.service';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { LoginService } from '../../core/login/login.service';
+import { MainService } from '../main.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { LoginServiceService } from '../login/login-service.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private mainService: MainService, private loginService: LoginServiceService) { }
+  constructor(private mainService: MainService, private loginService: LoginService) { }
 
   public ngOnInit(): void { }
 
@@ -18,6 +19,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public onLogout(): void {
-     this.loginService.logout();
+    this.loginService.logout();
   }
 }

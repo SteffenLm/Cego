@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ServerLogin, ServerResponse } from './login.model';
-import { Api } from '../core/api.model';
+import { Api } from '../api.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginServiceService extends Api {
+@Injectable()
+export class LoginService extends Api {
 
   private jwtHelper = new JwtHelperService();
   private readonly JWT = 'jwt';

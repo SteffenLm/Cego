@@ -21,5 +21,4 @@ export abstract class Api {
     public deleteRequest<T, U>(url: string): Observable<U> {
         return this.http.delete<U>(`${environment.apiBackendUrl}/${url}`);
     }
-
 }

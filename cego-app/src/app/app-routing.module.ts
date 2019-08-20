@@ -1,10 +1,15 @@
+// angular imports
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
+// own components
+import { LoginComponent } from './core/login/login.component';
 import { MainComponent } from './main/main.component';
 import { PlayersComponent } from './players/players.component';
-import { AppAuthGuard } from './app-auth-guard.service';
 
+// own services
+import { AppAuthGuard } from './app-auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},

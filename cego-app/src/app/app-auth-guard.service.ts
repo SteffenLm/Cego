@@ -1,10 +1,18 @@
-import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, CanActivateChild } from '@angular/router';
+// angular imports
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { CanActivate } from '@angular/router';
+import { CanActivateChild } from '@angular/router';
+import { RouterStateSnapshot } from '@angular/router';
+
+// thirdparty imports
 import { Observable } from 'rxjs';
-import { LoginServiceService } from './login/login-service.service';
+
+// own services
+import { LoginService } from './core/login/login.service';
 
 export class AppAuthGuard implements CanActivate, CanActivateChild {
 
-    constructor(private loginService: LoginServiceService) { }
+    constructor(private loginService: LoginService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         return this.loginService.isLoggedIn();

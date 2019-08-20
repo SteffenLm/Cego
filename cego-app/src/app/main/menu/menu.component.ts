@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { MainService } from '../main/main.service';
+import { MainService } from '../main.service';
 import { MenuEntry } from './menu.model';
 import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -32,7 +32,6 @@ export class MenuComponent implements OnInit, OnDestroy {
   ];
 
   public mainHeight = 512;
-  public toggle = false;
   @ViewChild('sidenav', { static: true }) private sideNavRef: MatSidenav;
 
   private menuSubscription: Subscription;
@@ -45,8 +44,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     );
     // css optimize!
     this.mainHeight = window.innerHeight - 64;
-    console.log(this.mainHeight);
-    console.log(window.innerHeight);
+    // console.log(this.mainHeight);
+    // console.log(window.innerHeight);
   }
 
   public ngOnDestroy(): void {

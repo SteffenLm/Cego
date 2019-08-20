@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuEntry } from '../menu.model';
+import { MainService } from '../../main.service';
 
 @Component({
   selector: 'app-menu-entry',
@@ -10,7 +11,11 @@ export class MenuEntryComponent implements OnInit {
 
   @Input() public entry: MenuEntry;
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   public ngOnInit(): void { }
+
+  public toggleSidenav(): void {
+    this.mainService.clickMenu();
+  }
 }
