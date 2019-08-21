@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuEntryComponent } from './menu/menu-entry/menu-entry.component';
 
 import { MainService } from './main.service';
+import { MainRoutingModule } from './main-routing.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +27,7 @@ import { MainService } from './main.service';
         MatIconModule,
         MatSidenavModule,
         MatToolbarModule,
-        RouterModule
+        MainRoutingModule
     ],
     providers: [MainService]
 })
