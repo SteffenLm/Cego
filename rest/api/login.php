@@ -1,6 +1,6 @@
 <?php
-require './objects/user.php';
-require './core/json.php';
+require_once './objects/user.php';
+require_once './core/json.php';
 
 $json = new JSON();
 $json->setHeader();
@@ -16,5 +16,4 @@ if ($jwt = $user->generateToken($reqUsername, $reqPassword)) {
     echo json_encode($resp);
 } else {
     http_response_code(401);
-    echo json_encode("");
 }
