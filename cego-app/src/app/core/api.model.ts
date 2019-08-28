@@ -10,8 +10,8 @@ export abstract class Api {
         return this.http.post<U>(`${environment.apiBackendUrl}/${url}`, body);
     }
 
-    public getRequest<T, U>(url: string): Observable<U> {
-        return this.http.get<U>(`${environment.apiBackendUrl}/${url}`);
+    public getRequest<T>(url: string): Observable<T> {
+        return this.http.get<T>(`${environment.apiBackendUrl}/${url}`);
     }
 
     public putRequest<T, U>(url: string, body: T): Observable<U> {
