@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,8 @@ import { MenuEntryComponent } from './menu/menu-entry/menu-entry.component';
 
 import { MainService } from './main.service';
 import { MainRoutingModule } from './main-routing.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './jwt.interceptor';
 
 @NgModule({
     declarations: [
@@ -23,12 +25,18 @@ import { MainRoutingModule } from './main-routing.module';
     ],
     imports: [
         CommonModule,
+        HttpClientModule,
         MatButtonModule,
         MatIconModule,
         MatSidenavModule,
         MatToolbarModule,
         MainRoutingModule
     ],
-    providers: [MainService]
+    providers: [MainService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true,
+        }]
 })
 export class MainModule { }

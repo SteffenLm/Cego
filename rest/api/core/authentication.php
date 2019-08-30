@@ -16,9 +16,9 @@
         }
 
         public static function tokenIsValid() {
-            if (isset(apache_request_headers()["Authorization"])) {
+            if (isset(apache_request_headers()["authorization"])) {
                 try {
-                    $authvalue = apache_request_headers()["Authorization"];
+                    $authvalue = apache_request_headers()["authorization"];
                     $token = substr($authvalue, 7);
                     list($header, $payload, $signature) = explode (".", $token);
                     $reqPayload =  json_decode(base64_decode($payload));

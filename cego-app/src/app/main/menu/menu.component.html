@@ -4,7 +4,7 @@
       <app-menu-entry *ngFor="let menuEntry of this.menuEntries" [entry]="menuEntry"></app-menu-entry>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="overflow-y: hidden">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

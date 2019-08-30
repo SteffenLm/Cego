@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../game.service';
+import { Observable } from 'rxjs';
+import { ServerGames } from '../game.model';
+
 
 @Component({
   selector: 'app-games-overview',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamesOverviewComponent implements OnInit {
 
-  constructor() { }
+  public games: Observable<ServerGames[]>;
+
+  constructor(public gamesService: GameService) { }
 
   ngOnInit() {
+    this.games = this.gamesService.getAllGames();
   }
 
 }

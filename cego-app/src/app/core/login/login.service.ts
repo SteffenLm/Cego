@@ -46,7 +46,7 @@ export class LoginService extends Api {
   }
 
   public requestToken(credentials: ServerLogin): void {
-    this.postRequest<ServerLogin, ServerResponse>('login.php', credentials).subscribe(
+    this.postRequest<ServerLogin, ServerResponse>('login', credentials).subscribe(
       (response) => {
         localStorage.setItem(this.JWT, response.jwt);
         this.router.navigate(['']);
@@ -55,6 +55,10 @@ export class LoginService extends Api {
 
       }
     );
+  }
+
+  public getToken(): string {
+    return this.token;
   }
 
   public logout(): void {
