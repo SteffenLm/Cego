@@ -1,5 +1,4 @@
-CREATE DATABASE cego;
-USE cego;
+USE cego_db;
 
 CREATE TABLE users(
 	uid INT AUTO_INCREMENT PRIMARY KEY,
