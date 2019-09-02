@@ -1,5 +1,4 @@
-RewriteEngine On #
-RewriteRule ^login/?$ login.php [NC,L] # NC = no casesensitive L = Last
+RewriteEngine On
 RewriteRule ^games/?$ games.php [NC,L]
 RewriteRule ^games/([0-9]+)/?$ games.php?id=$1 [NC,L]
 Options -MultiViews

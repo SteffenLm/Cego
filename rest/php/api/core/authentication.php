@@ -57,10 +57,13 @@
         }
 
         public static function userExists($username) {
-            $stmt = self::$connection->prepare("SELECT count(*) FROM " . self::$tablename . " WHERE username = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $res = $stmt->get_result();
+            echo var_dump($username);
+            $query = "SELECT count(*) FROM " . self::$tablename . " WHERE username = ?";
+            echo var_dump($stmt = self::$connection->prepare($query));
+            echo var_dump($stmt->bind_param("s", $username));
+            echo var_dump($stmt->execute());
+            echo var_dump($query);
+            $res = mysqli_stmt_get_result($stmt);
             $row = $res->fetch_array();
             return $row[0] === 1 ? true: false;
         }

@@ -1,6 +1,3 @@
-# PHP vendor packages
-rest/vendor
-
 # Logs
 logs
 *.log
