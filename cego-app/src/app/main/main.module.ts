@@ -15,6 +15,7 @@ import { MainService } from './main.service';
 import { MainRoutingModule } from './main-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
+import { UserService } from './user.service';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,9 @@ import { JwtInterceptor } from './jwt.interceptor';
         MatToolbarModule,
         MainRoutingModule
     ],
-    providers: [MainService,
+    providers: [
+        MainService,
+        UserService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,

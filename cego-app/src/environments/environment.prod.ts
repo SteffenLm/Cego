@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBackendUrl: 'http://localhost/api'
+  apiBackendUrl: 'https://cloud.steffen-merk.de/cego/api'
 };

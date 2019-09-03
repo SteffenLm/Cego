@@ -1,0 +1,23 @@
+<div class="m1">
+    <mat-toolbar color="primary" class="rt1">Spiel erstellen</mat-toolbar>
+    <mat-card class="rt0">
+        <mat-form-field appearance="outline">
+            <input matInput type="text">
+            <mat-label>Name</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input matInput disabled [value]="" type="text">
+            <mat-label>Ersteller</mat-label>
+        </mat-form-field>
+        <!-- <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field> -->
+        <button mat-raised-button color="primary">Erstellen</button>
+    </mat-card>
+</div>

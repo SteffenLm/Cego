@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ServerLogin, ServerResponse } from './login.model';
+import { ServerLogin, ServerResponse, JwtPayload } from './login.model';
 import { Api } from '../api.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';

@@ -6,3 +6,7 @@ export interface ServerLogin {
 export interface ServerResponse {
     jwt: string;
 }
+
+export interface JwtPayload {
+    username: string;
+}
