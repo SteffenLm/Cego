@@ -1,4 +1,6 @@
+import "reflect-metadata";
 import express from 'express';
+
 import { Connection } from './core/connection';
 
 const app: express.Application = express();

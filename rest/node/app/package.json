@@ -5,13 +5,16 @@
   "main": "build/index.js",
   "scripts": {
     "start": "node .",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "orm": "typeorm init --name cego-api --database mariadb"
   },
   "author": "Steffen, Merk",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "mariadb": "^2.1.0"
+    "mariadb": "^2.1.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.18"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
