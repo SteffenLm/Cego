@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "rest"
+		},
+		{
+			"path": "cego-api"
 		}
 	],
 	"settings": {
