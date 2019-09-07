@@ -1,4 +1,5 @@
-import {UserController} from "./controller/UserController";
+import { UserController } from "./controller/UserController";
+import { LoginController } from "./controller/LoginController";
 
 interface Route {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -7,24 +8,29 @@ interface Route {
     action: any;
 }
 
-export const Routes: Route[] = [{
-    method: "get",
-    route: "/users",
-    controller: UserController,
-    action: "all"
-}, {
-    method: "get",
-    route: "/users/:id",
-    controller: UserController,
-    action: "one"
-}, {
-    method: "post",
-    route: "/users",
-    controller: UserController,
-    action: "save"
-}, {
-    method: "delete",
-    route: "/users/:id",
-    controller: UserController,
-    action: "remove"
-}];
+export const Routes: Route[] = [
+    {
+        method: "get",
+        route: "/users",
+        controller: UserController,
+        action: "readAll"
+    },
+    {
+        method: "get",
+        route: "/users/:id",
+        controller: UserController,
+        action: "readOne"
+    },
+    {
+        method: "delete",
+        route: "/users/:id",
+        controller: UserController,
+        action: "deleteOne"
+    },
+    {
+        method: "post",
+        route: "/login",
+        controller: LoginController,
+        action: "createToken"
+    }
+];
