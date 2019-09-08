@@ -11,25 +11,25 @@ interface Route {
 export const Routes: Route[] = [
     {
         method: "get",
-        route: "/users",
+        route: "/api/users",
         controller: UserController,
         action: "readAll"
     },
     {
         method: "get",
-        route: "/users/:id",
+        route: "/api/users/:id",
         controller: UserController,
         action: "readOne"
     },
     {
         method: "delete",
-        route: "/users/:id",
+        route: "/api/users/:id",
         controller: UserController,
         action: "deleteOne"
     },
     {
         method: "post",
-        route: "/login",
+        route: "/api/login",
         controller: LoginController,
         action: "createToken"
     }

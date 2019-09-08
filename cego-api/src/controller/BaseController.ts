@@ -7,16 +7,3 @@ export interface RestController<T> {
     updateOne(request: Request, response: Response, next: NextFunction): Promise<T>;
     deleteOne(request: Request, response: Response, next: NextFunction): Promise<boolean>;
 }
-
-export abstract class BaseController {
-
-    private response: Response;
-
-    constructor(response: Response) {
-        this.response = response;        
-    }
-
-    public BadRequest(): void {
-        this.response.status(400).end();
-    }
-}
