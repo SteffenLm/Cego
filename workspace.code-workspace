@@ -7,14 +7,7 @@
 			"path": "cego-app"
 		},
 		{
-			"path": "rest"
-		},
-		{
 			"path": "cego-api"
 		}
-	],
-	"settings": {
-		"phpcs.standard": "PSR2",
-		"php-cs-fixer.onsave": true
-	}
+	]
 }
