@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 
 // own services
 import { LoginService } from './core/login/login.service';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AppAuthGuard implements CanActivate, CanActivateChild {
 
     constructor(private loginService: LoginService) { }

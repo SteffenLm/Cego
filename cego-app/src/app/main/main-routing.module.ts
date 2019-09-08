@@ -20,6 +20,10 @@ const routes: Routes = [
             {
                 path: '',
                 redirectTo: 'profile'
+            },
+            {
+                path: '**',
+                redirectTo: 'profile'
             }
         ]
     }
