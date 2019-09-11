@@ -1,5 +1,5 @@
 export interface ServerGames {
-    gid: number;
+    id: number;
     name: string;
     created: Date;
 }

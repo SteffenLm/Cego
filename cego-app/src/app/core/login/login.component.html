@@ -8,12 +8,14 @@
             <mat-form-field appearance="outline">
                 <input formControlName="username" type="text" matInput>
                 <mat-label>Benutzername</mat-label>
+                <mat-error> Benutzername zu kurz </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Passwort</mat-label>
                 <input formControlName="password" type="password" matInput>
+                <mat-label>Passwort</mat-label>
+                <mat-error> Passwort zu kurz. </mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" type="submit"> Login </button>
+            <button mat-raised-button [disabled]="!loginForm.valid" color="primary" type="submit"> Login </button>
         </form>
     </mat-card>
 </div>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ServerLogin, ServerResponse, JwtPayload } from './login.model';
+import { ServerLogin, ServerResponse } from './login.model';
 import { Api } from '../api.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class LoginService extends Api {
@@ -12,7 +13,7 @@ export class LoginService extends Api {
   private readonly JWT = 'jwt';
   private token: string = null;
 
-  constructor(http: HttpClient, private router: Router) {
+  constructor(http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
     super(http);
   }
 
@@ -52,7 +53,10 @@ export class LoginService extends Api {
         this.router.navigate(['']);
       },
       () => {
-
+        this.snackBar.open('Login fehlgeschlagen'.toUpperCase(), '', {
+          horizontalPosition: 'center',
+          duration: 3000
+        });
       }
     );
   }
