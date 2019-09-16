@@ -21,7 +21,7 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "build": "tsc",
+      "build": "tsc --sourceMap false",
       "migrateup": "ts-node ./node_modules/typeorm/cli.js migration:run",
       "migratedown": "ts-node ./node_modules/typeorm/cli.js migration:revert",
       "generate": "ts-node ./node_modules/typeorm/cli.js migration:create -n InitialUserData"
