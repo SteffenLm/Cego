@@ -1,7 +1,7 @@
 <mat-action-list>
     <button mat-list-item *ngFor='let game of games | async'>
-        <div matLine>{{game.name}}</div>
-        <div matLine>{{game.created | date}}</div>
+        <div matLine>{{ game.name }}</div>
+        <div matLine>{{ game.created | date }}</div>
     </button>
 </mat-action-list>
 <button mat-fab class="fix" color="primary" routerLink="add">
