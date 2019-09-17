@@ -18,7 +18,7 @@ export class InitialUserData1567893389613 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        queryRunner.query(`DELETE FROM user WHERE id <= 8`);
+        queryRunner.query('DELETE FROM user WHERE id <= 8');
     }
 
 }
