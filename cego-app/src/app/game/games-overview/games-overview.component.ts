@@ -11,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
   animations: [
     trigger('item', [
       transition(':enter', [
-        style({ transform: 'scale(0.5)', opacity: 0 }),  // initial
+        style({ opacity: 0 }),  // initial
         animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
-          style({ transform: 'scale(1)', opacity: 1 }))  // final
+          style({ opacity: 1 }))  // final
       ])
     ]),
     trigger('list', [

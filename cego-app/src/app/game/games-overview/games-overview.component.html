@@ -1,5 +1,5 @@
-<mat-action-list @list fxLayout="column">
-    <button @item mat-list-item *ngFor='let game of games'>
+<mat-action-list @list>
+    <button mat-list-item @item *ngFor='let game of games'>
         <div matLine>{{ game.name }}</div>
         <div matLine>{{ game.created | date }}</div>
     </button>
