@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 
 // own services
 import { AppAuthGuard } from './app-auth-guard.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { AppAuthGuard } from './app-auth-guard.service';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AppAuthGuard],
   bootstrap: [AppComponent]
