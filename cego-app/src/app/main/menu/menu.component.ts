@@ -15,7 +15,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  private headerHeight = 56;
+  public headerHeight = 56;
 
   public menuEntries: MenuEntry[] = [
     {
