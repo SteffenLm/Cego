@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,6 +28,7 @@ import { UserService } from './user.service';
     imports: [
         CommonModule,
         HttpClientModule,
+        LayoutModule,
         MatButtonModule,
         MatIconModule,
         MatSidenavModule,

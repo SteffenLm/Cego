@@ -1,10 +1,10 @@
-<mat-sidenav-container [style.height.px]="mainHeight">
-  <mat-sidenav mode="over" #sidenav class="nav-bar-width">
+<mat-sidenav-container>
+  <mat-sidenav fixedInViewport="true" [fixedTopGap]="this.headerHeight" mode="over" #sidenav class="nav-bar-width">
     <div fxLayout="column">
       <app-menu-entry *ngFor="let menuEntry of this.menuEntries" [entry]="menuEntry"></app-menu-entry>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="max-height: 90vh">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

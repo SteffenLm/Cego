@@ -12,9 +12,14 @@ export class LoginService extends Api {
   private jwtHelper = new JwtHelperService();
   private readonly JWT = 'jwt';
   private token: string = null;
+  private username: string;
 
   constructor(http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
     super(http);
+  }
+
+  public getUsername(): string {
+    return this.username;
   }
 
   public isLoggedIn(): boolean {
@@ -36,6 +41,7 @@ export class LoginService extends Api {
       this.navigateToLoginPage();
       return false;
     } else {
+      this.setUsername(this.token);
       return true;
     }
   }
@@ -49,6 +55,7 @@ export class LoginService extends Api {
   public requestToken(credentials: ServerLogin): void {
     this.postRequest<ServerLogin, ServerResponse>('login', credentials).subscribe(
       (response) => {
+        this.setUsername(response.jwt);
         localStorage.setItem(this.JWT, response.jwt);
         this.router.navigate(['']);
       },
@@ -67,5 +74,9 @@ export class LoginService extends Api {
 
   public logout(): void {
     this.navigateToLoginPage();
+  }
+
+  private setUsername(token: string) {
+    this.username = this.jwtHelper.decodeToken(token).username;
   }
 }

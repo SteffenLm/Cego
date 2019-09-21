@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Observable } from 'rxjs';
+import { ServerPlayer } from './game-add.model';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/core/login/login.service';
 
 @Component({
   selector: 'app-game-add',
@@ -15,10 +20,22 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])]
 })
 export class GameAddComponent implements OnInit {
-
-  constructor() { }
-
-  public ngOnInit(): void {
+  private allPlayers: ServerPlayer[];
+  public filteredPlayers: ServerPlayer[];
+  constructor(private route: ActivatedRoute, private loginService: LoginService) {
+    this.allPlayers = this.route.snapshot.data.players;
+    this.filteredPlayers = this.allPlayers;
   }
 
+  public ngOnInit(): void {
+
+  }
+
+  public displayPlayer(selectedPlayer: ServerPlayer): string {
+    return selectedPlayer.username;
+  }
+
+  public getUsername(): string {
+    return this.loginService.getUsername();
+  }
 }
