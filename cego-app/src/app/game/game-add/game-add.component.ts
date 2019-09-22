@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Observable } from 'rxjs';
+import { map, startWith, tap } from 'rxjs/operators';
 import { ServerPlayer } from './game-add.model';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/core/login/login.service';
 
@@ -20,22 +20,81 @@ import { LoginService } from 'src/app/core/login/login.service';
     ])]
 })
 export class GameAddComponent implements OnInit {
-  private allPlayers: ServerPlayer[];
-  public filteredPlayers: ServerPlayer[];
-  constructor(private route: ActivatedRoute, private loginService: LoginService) {
+
+  public createGameForm: FormGroup;
+  public isCreatable = false;
+  private allPlayers: ServerPlayer[]; // contains all players on platform
+  private filteredPlayers: ServerPlayer[]; // contains all players except logged in user and already selected
+  public temporaryFilteredPlayers: ServerPlayer[]; // containes all filtered except matching given input
+
+  // form controls needed to subscribe later on changes
+  private fcPlayer1: FormControl;
+  private fcPlayer2: FormControl;
+  private fcPlayer3: FormControl;
+  private playerFormControls: FormControl[] = []; // array of all input controlls for looping through
+
+
+
+  constructor(private route: ActivatedRoute, private loginService: LoginService, private formBuilder: FormBuilder) {
+    this.fcPlayer1 = this.createPlayerFromControl();
+    this.playerFormControls.push(this.fcPlayer1);
+    this.fcPlayer2 = this.createPlayerFromControl();
+    this.playerFormControls.push(this.fcPlayer2);
+    this.fcPlayer3 = this.createPlayerFromControl();
+    this.playerFormControls.push(this.fcPlayer3);
+
+
+    this.createGameForm = this.formBuilder.group({
+      player1: this.fcPlayer1,
+      player2: this.fcPlayer2,
+      player3: this.fcPlayer3,
+      creator: new FormControl({
+        value: this.loginService.getUsername(),
+        disabled: true
+      }, Validators.required),
+    });
     this.allPlayers = this.route.snapshot.data.players;
+    this.allPlayers = this.allPlayers.filter(v => v.username !== this.loginService.getUsername());
     this.filteredPlayers = this.allPlayers;
+
   }
 
   public ngOnInit(): void {
-
+    this.createGameForm.valueChanges.subscribe(() => {
+      this.filteredPlayers = this.allPlayers.filter((player) => {
+        return (player.username !== this.fcPlayer1.value.username
+          && player.username !== this.fcPlayer2.value.username
+          && player.username !== this.fcPlayer3.value.username
+          && player.username !== this.loginService.getUsername());
+      });
+    });
+    this.playerFormControls.forEach((formControl) => {
+      formControl.valueChanges.pipe(
+        startWith(''),
+        map((value) => {
+          this.temporaryFilteredPlayers = this.filteredPlayers.filter((player) => {
+            return player.username.toLowerCase().includes(value);
+          });
+        }),
+      ).subscribe();
+    });
   }
 
   public displayPlayer(selectedPlayer: ServerPlayer): string {
     return selectedPlayer.username;
   }
 
-  public getUsername(): string {
-    return this.loginService.getUsername();
+  public checkCreatable(): void {
+    this.isCreatable = this.formControlisTouchedAndValid(this.fcPlayer1) &&
+      this.formControlisTouchedAndValid(this.fcPlayer2) &&
+      this.formControlisTouchedAndValid(this.fcPlayer3);
+  }
+
+  private createPlayerFromControl(): FormControl {
+    return new FormControl({ value: '' }, [Validators.required, Validators.minLength(3)]);
+  }
+
+  private formControlisTouchedAndValid(formControl: FormControl): boolean {
+    return formControl.touched && formControl.dirty && formControl.valid;
   }
 }

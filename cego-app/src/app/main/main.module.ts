@@ -17,6 +17,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 import { UserService } from './user.service';
+import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,14 @@ import { UserService } from './user.service';
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,
             multi: true,
-        }]
+        },
+        {
+            provide: MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+            useValue: {
+                autoActiveFirstOption: true
+            },
+            multi: false
+        }
+    ]
 })
 export class MainModule { }
