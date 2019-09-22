@@ -16,6 +16,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class MenuComponent implements OnInit, OnDestroy {
 
   public headerHeight = 56;
+  public contentHeight = 400;
 
   public menuEntries: MenuEntry[] = [
     {
@@ -41,7 +42,12 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(private mainService: MainService, breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe(['(min-width: 600px)'])
       .subscribe(result => {
-        result.matches ? this.headerHeight = 64 : this.headerHeight = 56;
+        if (result.matches) {
+          this.headerHeight = 64;
+        } else {
+          this.headerHeight = 56;
+        }
+        this.contentHeight = window.innerHeight - this.headerHeight;
       });
   }
 
