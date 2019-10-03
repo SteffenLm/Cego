@@ -60,10 +60,12 @@ export class LoginService extends Api {
         this.router.navigate(['']);
       },
       () => {
-        this.snackBar.open('Login fehlgeschlagen'.toUpperCase(), '', {
-          horizontalPosition: 'center',
-          duration: 3000
-        });
+        this.snackBar.open('Login fehlgeschlagen'.toUpperCase(), '',
+        //  {
+        //   horizontalPosition: 'center',
+        //   duration: 3000
+        // }
+        );
       }
     );
   }
@@ -72,8 +74,9 @@ export class LoginService extends Api {
     return this.token;
   }
 
-  public logout(): void {
+  public logout(error: boolean = false): void {
     this.navigateToLoginPage();
+    if (error) { this.snackBar.open('Erneute Anmeldung erforderlich!'); }
   }
 
   private setUsername(token: string) {

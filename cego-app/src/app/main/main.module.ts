@@ -18,6 +18,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './jwt.interceptor';
 import { UserService } from './user.service';
 import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
+import { AuthenticationInterceptor } from './authentication.interceptor';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,11 @@ import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthenticationInterceptor,
             multi: true,
         },
         {
