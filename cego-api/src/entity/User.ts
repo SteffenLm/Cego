@@ -14,7 +14,7 @@ export class User {
         type: "varchar",
         length: 30,
         nullable: false,
-        unique: true,
+        unique: true
     })
     username: string;
 
@@ -22,6 +22,7 @@ export class User {
         type: "varchar",
         length: 64,
         nullable: false,
+        select: false
     })
     password: string;
 
@@ -29,14 +30,16 @@ export class User {
         type: "varchar",
         length: 60,
         unique: true,
-        nullable: true
+        nullable: true,
+        select: false
     })
     email: number;
 
     @Column({
         type: "varchar",
         length: 32,
-        nullable: true
+        nullable: true,
+        select: false
     })
     jwtkey: string;
 

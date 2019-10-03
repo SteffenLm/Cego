@@ -1,5 +1,6 @@
 import { UserController } from "./controller/UserController";
 import { LoginController } from "./controller/LoginController";
+import { GameController } from "./controller/GameController";
 
 interface Route {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -11,21 +12,15 @@ interface Route {
 export const Routes: Route[] = [
     {
         method: "get",
-        route: "/api/users",
-        controller: UserController,
+        route: "/api/games",
+        controller: GameController,
         action: "readAll"
     },
     {
         method: "get",
-        route: "/api/users/:id",
+        route: "/api/users",
         controller: UserController,
-        action: "readOne"
-    },
-    {
-        method: "delete",
-        route: "/api/users/:id",
-        controller: UserController,
-        action: "deleteOne"
+        action: "readAll"
     },
     {
         method: "post",

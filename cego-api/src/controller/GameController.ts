@@ -1,17 +1,17 @@
 import { getRepository } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
 import { Read } from "./BaseController";
+import { Game } from "../entity/Game";
 
-export class UserController implements Read<User> {
+export class GameController implements Read<Game> {
 
-    private userRepository = getRepository(User);
+    private gameRepository = getRepository(Game);
 
     async readAll(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.find();
+        return this.gameRepository.find();
     }
 
     async readOne(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.findOne(request.params.id);
+        return this.gameRepository.findOne(request.params.id);
     }
 }

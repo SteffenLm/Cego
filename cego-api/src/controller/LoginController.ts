@@ -17,21 +17,26 @@ export class LoginController {
 
     async createToken(request: Request, response: Response, next: NextFunction) {
         const body = <ClientRequest>request.body;
-        const user = new User();
+        let user = new User();
         user.username = body.username;
-        const queriedUser = <User>await this.userRepository.findOneOrFail(user).catch(() => {
+        const queriedUser = <User>await this.userRepository.findOneOrFail(user, {
+            select: ['jwtkey', 'password', 'username']
+        }).catch(() => {
             Responses.BadRequest(response);
         });
         LoginController.passwordIsCorrect(body, queriedUser)
             .then(() => {
                 genSalt(10).then((salt) => {
-                    jwt.sign({ "username": user.username }, salt, (err, token) => {
-                        response.status(200).send({
-                            jwt: token
-                        });
+                    jwt.sign({ "username": queriedUser.username }, salt, (err, token) => {
+                        if (err) {
+                            Responses.BadRequest(response);
+                        } else {
+                            this.userRepository.update({ username: queriedUser.username }, { jwtkey: salt });
+                            response.status(200).send({
+                                jwt: token
+                            });
+                        }
                     });
-                    queriedUser.jwtkey = salt;
-                    this.userRepository.save(queriedUser);
                 });
             })
             .catch(() => { Responses.BadRequest(response); });
@@ -43,6 +48,9 @@ export class LoginController {
                 compare(clearPassword.password, queriedUser.password)
                     .then((isCorrect) => {
                         isCorrect ? resolve(true) : reject(false);
+                    })
+                    .catch((err) => {
+                        debugger;
                     });
             });
     }
