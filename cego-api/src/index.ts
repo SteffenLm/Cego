@@ -7,12 +7,14 @@ import { Request, Response } from "express";
 import { createConnection } from 'typeorm';
 
 import { Routes } from "./routes";
+import { Authentication } from "./middlewares/Authentication";
 
 createConnection().then(async connection => {
-
+    const auth = new Authentication();
     // create express app
     const app: express.Application = express();
     app.use(bodyParser.json());
+    app.use(auth.checkJwt);
 
     // register express routes from defined application routes
     Routes.forEach(route => {
