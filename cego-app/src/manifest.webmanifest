@@ -1,6 +1,6 @@
 {
-  "name": "cego-app",
-  "short_name": "cego-app",
+  "name": "Cego Count",
+  "short_name": "Cego Count",
   "theme_color": "#c2185b",
   "background_color": "#303030",
   "display": "standalone",

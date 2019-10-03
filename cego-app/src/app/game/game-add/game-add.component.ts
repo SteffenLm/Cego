@@ -28,9 +28,9 @@ export class GameAddComponent implements OnInit {
   public temporaryFilteredPlayers: ServerPlayer[]; // containes all filtered except matching given input
 
   // form controls needed to subscribe later on changes
-  private fcPlayer1: FormControl;
-  private fcPlayer2: FormControl;
-  private fcPlayer3: FormControl;
+  public fcPlayer1: FormControl;
+  public fcPlayer2: FormControl;
+  public fcPlayer3: FormControl;
   private playerFormControls: FormControl[] = []; // array of all input controlls for looping through
 
 
