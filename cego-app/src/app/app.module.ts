@@ -1,18 +1,15 @@
-// angular imports
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
 
-// own modules
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
-// own components
+import { AppAuthGuard } from './app-auth-guard.service';
+
 import { AppComponent } from './app.component';
 
-// own services
-import { AppAuthGuard } from './app-auth-guard.service';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 @NgModule({

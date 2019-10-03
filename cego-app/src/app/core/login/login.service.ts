@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ServerLogin, ServerResponse } from './login.model';
-import { Api } from '../api.model';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+import { Api } from '../api.model';
+import { ServerLogin, ServerResponse } from './login.model';
 
 @Injectable()
 export class LoginService extends Api {
@@ -18,12 +21,10 @@ export class LoginService extends Api {
     super(http);
   }
 
-  public getUsername(): string {
-    return this.username;
-  }
+  public getUsername(): string { return this.username; }
 
   public isLoggedIn(): boolean {
-    if (this.token === null) { // never run login check
+    if (this.token === null) { // login check did never run
       this.token = localStorage.getItem(this.JWT);
       if (this.token === null) { // no token in local storage
         this.navigateToLoginPage();
@@ -59,20 +60,11 @@ export class LoginService extends Api {
         localStorage.setItem(this.JWT, response.jwt);
         this.router.navigate(['']);
       },
-      () => {
-        this.snackBar.open('Login fehlgeschlagen'.toUpperCase(), '',
-        //  {
-        //   horizontalPosition: 'center',
-        //   duration: 3000
-        // }
-        );
-      }
+      () => { this.snackBar.open('Login fehlgeschlagen'.toUpperCase()); }
     );
   }
 
-  public getToken(): string {
-    return this.token;
-  }
+  public getToken(): string { return this.token; }
 
   public logout(error: boolean = false): void {
     this.navigateToLoginPage();
@@ -82,4 +74,5 @@ export class LoginService extends Api {
   private setUsername(token: string) {
     this.username = this.jwtHelper.decodeToken(token).username;
   }
+
 }

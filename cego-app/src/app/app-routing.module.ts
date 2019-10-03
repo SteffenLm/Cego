@@ -1,13 +1,11 @@
-// angular imports
+
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
-// own components
-import { LoginComponent } from './core/login/login.component';
-
-// own services
 import { AppAuthGuard } from './app-auth-guard.service';
+
+import { LoginComponent } from './core/login/login.component';
 
 const routes: Routes = [
   {
@@ -31,9 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes
-    // ,     { enableTracing: true }
-  )],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

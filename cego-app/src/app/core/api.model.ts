@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+
 import { environment } from '../../environments/environment';
 
 export abstract class Api {
@@ -18,7 +20,7 @@ export abstract class Api {
         return this.http.put<U>(`${environment.apiBackendUrl}${url}`, body);
     }
 
-    public deleteRequest<T, U>(url: string): Observable<U> {
-        return this.http.delete<U>(`${environment.apiBackendUrl}${url}`);
+    public deleteRequest<T>(url: string): Observable<T> {
+        return this.http.delete<T>(`${environment.apiBackendUrl}${url}`);
     }
 }
