@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   public headerHeight = 56;
   public contentHeight = 400;
+  public load = false;
 
   public menuEntries: MenuEntry[] = [
     {
@@ -55,6 +56,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuSubscription = this.mainService.menuClicked$.subscribe(
       () => { this.sideNavRef.toggle(); }
     );
+    this.mainService.loadingIndicator$.subscribe(load => this.load = load);
   }
 
   public ngOnDestroy(): void {

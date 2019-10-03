@@ -1,10 +1,12 @@
 <mat-sidenav-container>
-  <mat-sidenav autoFocus="false" fixedInViewport="true" [fixedTopGap]="this.headerHeight" mode="over" #sidenav class="nav-bar-width">
+  <mat-sidenav autoFocus="false" fixedInViewport="true" [fixedTopGap]="this.headerHeight" mode="over" #sidenav
+    class="nav-bar-width">
     <div fxLayout="column">
       <app-menu-entry *ngFor="let menuEntry of this.menuEntries" [entry]="menuEntry"></app-menu-entry>
     </div>
   </mat-sidenav>
   <mat-sidenav-content [style.height.px]="contentHeight" class="sidenav-content">
+    <mat-progress-bar *ngIf="load" mode="indeterminate"></mat-progress-bar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
