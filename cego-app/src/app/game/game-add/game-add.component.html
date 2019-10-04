@@ -1,25 +1,35 @@
-<form @item class="m1" [formGroup]="this.createGameForm">
+<form @item class="m1" [formGroup]="this.createGameForm" (ngSubmit)="onSubmit()">
     <mat-toolbar color="primary" class="rt1">Spiel erstellen</mat-toolbar>
     <mat-card class="rt0" fxLayout="column" style="padding-bottom: 10px;">
         <mat-form-field appearance="outline">
-            <input (click)="this.fcPlayer1.setValue('')" matInput matAutocompletePosition="below" type="text" [matAutocomplete]="player1" formControlName="player1" spellcheck="false" autofocus>
+            <input autocomplete="off" matInput type="text" formControlName="gamename" spellcheck="false">
+            <mat-label>Spielname</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input (click)="this.fcPlayer1.setValue('')" matInput matAutocompletePosition="below" type="text"
+                   [matAutocomplete]="player1" formControlName="player1" spellcheck="false">
             <mat-autocomplete #player1="matAutocomplete" [displayWith]="this.displayPlayer">
-                    <mat-option (click)="checkCreatable()" *ngFor="let player of this.temporaryFilteredPlayers" [value]="player"> {{player.username}} </mat-option>
-                </mat-autocomplete>
+                <mat-option *ngFor="let player of this.temporaryFilteredPlayers" [value]="player"> {{player.username}}
+                </mat-option>
+            </mat-autocomplete>
             <mat-label>Mitspieler 1</mat-label>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <input (click)="this.fcPlayer2.setValue('')" matInput type="text" matAutocompletePosition="below" [matAutocomplete]="player2" formControlName="player2" spellcheck="false">
+            <input (click)="this.fcPlayer2.setValue('')" matInput type="text" matAutocompletePosition="below"
+                   [matAutocomplete]="player2" formControlName="player2" spellcheck="false">
             <mat-autocomplete #player2="matAutocomplete" [displayWith]="this.displayPlayer">
-                <mat-option (click)="checkCreatable()" *ngFor="let player of this.temporaryFilteredPlayers" [value]="player"> {{player.username}} </mat-option>
+                <mat-option *ngFor="let player of this.temporaryFilteredPlayers" [value]="player"> {{player.username}}
+                </mat-option>
             </mat-autocomplete>
             <mat-label>Mitspieler 2</mat-label>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <input (click)="this.fcPlayer3.setValue('')" matInput type="text" matAutocompletePosition="below" [matAutocomplete]="player3" formControlName="player3" spellcheck="false">
+            <input (click)="this.fcPlayer3.setValue('')" matInput type="text" matAutocompletePosition="below"
+                   [matAutocomplete]="player3" formControlName="player3" spellcheck="false">
             <mat-autocomplete #player3="matAutocomplete" [displayWith]="this.displayPlayer">
-                    <mat-option (click)="checkCreatable()" *ngFor="let player of this.temporaryFilteredPlayers" [value]="player"> {{player.username}} </mat-option>
-                </mat-autocomplete>
+                <mat-option *ngFor="let player of this.temporaryFilteredPlayers" [value]="player"> {{player.username}}
+                </mat-option>
+            </mat-autocomplete>
             <mat-label>Mitspieler 3</mat-label>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -29,8 +39,9 @@
         <div>
             <mat-divider></mat-divider>
             <div style="margin-top: 10px;" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-                <button mat-raised-button [disabled]="!this.isCreatable" color="primary">Erstellen</button>
-                <button mat-raised-button routerLink="/games" >Abbrechen</button>
+                <button type="submit" mat-raised-button [disabled]="!this.isCreatable"
+                        color="primary">Erstellen</button>
+                <button mat-raised-button routerLink="/games">Abbrechen</button>
             </div>
         </div>
     </mat-card>

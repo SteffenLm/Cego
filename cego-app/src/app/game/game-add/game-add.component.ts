@@ -28,6 +28,7 @@ export class GameAddComponent implements OnInit {
   public temporaryFilteredPlayers: ServerPlayer[]; // containes all filtered except matching given input
 
   // form controls needed to subscribe later on changes
+  public fcGameName: FormControl;
   public fcPlayer1: FormControl;
   public fcPlayer2: FormControl;
   public fcPlayer3: FormControl;
@@ -36,6 +37,7 @@ export class GameAddComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private loginService: LoginService, private formBuilder: FormBuilder) {
+    this.fcGameName = new FormControl('');
     this.fcPlayer1 = this.createPlayerFromControl();
     this.playerFormControls.push(this.fcPlayer1);
     this.fcPlayer2 = this.createPlayerFromControl();
@@ -45,6 +47,7 @@ export class GameAddComponent implements OnInit {
 
 
     this.createGameForm = this.formBuilder.group({
+      gamename: this.fcGameName,
       player1: this.fcPlayer1,
       player2: this.fcPlayer2,
       player3: this.fcPlayer3,
@@ -76,6 +79,7 @@ export class GameAddComponent implements OnInit {
             return player.username.toLowerCase().includes(value);
           });
         }),
+        tap(() => { this.checkCreatable(); })
       ).subscribe();
     });
   }
@@ -95,6 +99,6 @@ export class GameAddComponent implements OnInit {
   }
 
   private formControlisTouchedAndValid(formControl: FormControl): boolean {
-    return formControl.touched && formControl.dirty && formControl.valid;
+    return formControl.dirty && formControl.valid;
   }
 }
