@@ -12,7 +12,7 @@ export class InitialUserData1567893389613 implements MigrationInterface {
             `INSERT INTO user (id, username, password) VALUES (6, 'dennis', '$2b$12$yGbuMfZF86KcsfMvhBbKouADeWg67hO/gZPsbc88LwRc7kzB48yT6')`,
             `INSERT INTO user (id, username, password) VALUES (7, 'mayer', '$2b$12$yGbuMfZF86KcsfMvhBbKouADeWg67hO/gZPsbc88LwRc7kzB48yT6')`,
             `INSERT INTO user (id, username, password) VALUES (8, 'manu', '$2b$12$yGbuMfZF86KcsfMvhBbKouADeWg67hO/gZPsbc88LwRc7kzB48yT6')`,
-            `INSERT INTO user (id, username, password) VALUES (8, 'alu', '$2b$12$yGbuMfZF86KcsfMvhBbKouADeWg67hO/gZPsbc88LwRc7kzB48yT6')`
+            `INSERT INTO user (id, username, password) VALUES (9, 'alu', '$2b$12$yGbuMfZF86KcsfMvhBbKouADeWg67hO/gZPsbc88LwRc7kzB48yT6')`
         ];
         queries.forEach(query => {
             queryRunner.query(query);
