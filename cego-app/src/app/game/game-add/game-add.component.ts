@@ -1,10 +1,14 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { map, startWith, tap } from 'rxjs/operators';
-import { ServerPlayer } from './game-add.model';
+import { ServerPlayer, NetworkGame, GameForm } from './game-add.model';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/core/login/login.service';
+import { GameService } from '../game.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 
 @Component({
   selector: 'app-game-add',
@@ -36,7 +40,15 @@ export class GameAddComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute, private loginService: LoginService, private formBuilder: FormBuilder) {
+  constructor(
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private formBuilder: FormBuilder,
+    private gameService: GameService,
+    private snackBar: MatSnackBar) {
+  }
+
+  public ngOnInit(): void {
     this.fcGameName = new FormControl('');
     this.fcPlayer1 = this.createPlayerFromControl();
     this.playerFormControls.push(this.fcPlayer1);
@@ -60,9 +72,7 @@ export class GameAddComponent implements OnInit {
     this.allPlayers = this.allPlayers.filter(v => v.username !== this.loginService.getUsername());
     this.filteredPlayers = this.allPlayers;
 
-  }
 
-  public ngOnInit(): void {
     this.createGameForm.valueChanges.subscribe(() => {
       this.filteredPlayers = this.allPlayers.filter((player) => {
         return (player.username !== this.fcPlayer1.value.username
@@ -100,5 +110,22 @@ export class GameAddComponent implements OnInit {
 
   private formControlisTouchedAndValid(formControl: FormControl): boolean {
     return formControl.dirty && formControl.valid;
+  }
+
+  public onSubmit() {
+    const formValues: GameForm = this.createGameForm.value;
+    const requestBody: NetworkGame = {
+      name: formValues.gamename,
+      playerIds: [formValues.player1.id, formValues.player2.id, formValues.player3.id],
+      creator: this.loginService.getUsername()
+    };
+    this.gameService.saveGame(requestBody).subscribe(
+      () => { },
+      () => {
+        this.snackBar.open('Unbekannter Fehler', 'Wiederholen').onAction().subscribe(
+          () => { this.onSubmit(); }
+        );
+      }
+    );
   }
 }
