@@ -8,19 +8,19 @@ export abstract class Api {
 
     constructor(private http: HttpClient) { }
 
-    public postRequest<T, U>(url: string, body: T): Observable<U> {
+    protected postRequest<T, U>(url: string, body: T): Observable<U> {
         return this.http.post<U>(`${environment.apiBackendUrl}${url}`, body);
     }
 
-    public getRequest<T>(url: string): Observable<T> {
+    protected getRequest<T>(url: string): Observable<T> {
         return this.http.get<T>(`${environment.apiBackendUrl}${url}`);
     }
 
-    public putRequest<T, U>(url: string, body: T): Observable<U> {
+    protected putRequest<T, U>(url: string, body: T): Observable<U> {
         return this.http.put<U>(`${environment.apiBackendUrl}${url}`, body);
     }
 
-    public deleteRequest<T>(url: string): Observable<T> {
+    protected deleteRequest<T>(url: string): Observable<T> {
         return this.http.delete<T>(`${environment.apiBackendUrl}${url}`);
     }
 }
