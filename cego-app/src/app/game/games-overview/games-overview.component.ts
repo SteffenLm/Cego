@@ -27,7 +27,7 @@ export class GamesOverviewComponent implements OnInit {
 
   public games: ServerGames[];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.games = this.route.snapshot.data.games;

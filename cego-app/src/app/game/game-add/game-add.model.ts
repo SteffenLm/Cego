@@ -9,6 +9,10 @@ export interface NetworkGame {
     playerIds: number[];
 }
 
+export interface ServerGameCreated {
+    gameid: number;
+}
+
 export interface GameForm {
     gamename: string;
     player1: PlayerForm;

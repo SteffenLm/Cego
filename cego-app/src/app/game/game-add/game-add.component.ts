@@ -3,10 +3,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { map, startWith, tap } from 'rxjs/operators';
 import { ServerPlayer, NetworkGame, GameForm } from './game-add.model';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/core/login/login.service';
 import { GameService } from '../game.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GamesOverviewComponent } from '../games-overview/games-overview.component';
 
 
 
@@ -45,7 +46,8 @@ export class GameAddComponent implements OnInit {
     private loginService: LoginService,
     private formBuilder: FormBuilder,
     private gameService: GameService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private router: Router) {
   }
 
   public ngOnInit(): void {
@@ -120,7 +122,9 @@ export class GameAddComponent implements OnInit {
       creator: this.loginService.getUsername()
     };
     this.gameService.saveGame(requestBody).subscribe(
-      () => { },
+      (response) => {
+        this.router.navigate(['games', response.gameid]);
+      },
       () => {
         this.snackBar.open('Unbekannter Fehler', 'Wiederholen').onAction().subscribe(
           () => { this.onSubmit(); }
