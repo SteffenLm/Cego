@@ -7,8 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/login.service';
 import { GameService } from '../game.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GamesOverviewComponent } from '../games-overview/games-overview.component';
-
 
 
 @Component({
@@ -123,7 +121,7 @@ export class GameAddComponent implements OnInit {
     };
     this.gameService.saveGame(requestBody).subscribe(
       (response) => {
-        this.router.navigate(['games', response.gameid]);
+        this.router.navigate(['/games', response.gameid]);
       },
       () => {
         this.snackBar.open('Unbekannter Fehler', 'Wiederholen').onAction().subscribe(

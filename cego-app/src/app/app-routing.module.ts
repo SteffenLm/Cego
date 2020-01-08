@@ -12,14 +12,14 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./features/main/main.module').then(mod => mod.MainModule),
-    canActivate: [AppAuthGuard]
-  },
-  {
-    path: '',
     pathMatch: 'full',
     redirectTo: '/login'
   },
+  {
+    path: '',
+    loadChildren: () => import('./features/main/main.module').then(mod => mod.MainModule),
+    canActivate: [AppAuthGuard]
+  },  
   {
     path: '**',
     redirectTo: '/login'

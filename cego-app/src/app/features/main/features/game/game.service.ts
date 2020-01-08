@@ -4,6 +4,7 @@ import { ServerGames } from './game.model';
 import { Injectable } from '@angular/core';
 import { ServerPlayer, NetworkGame, ServerGameCreated } from './game-add/game-add.model';
 import { Observable } from 'rxjs';
+import { ServerGame } from './game-detail/game-detail.model';
 
 @Injectable()
 export class GameService extends Api {
@@ -20,5 +21,9 @@ export class GameService extends Api {
     }
     public getAllGames(): Observable<ServerGames[]> {
         return this.getRequest<ServerGames[]>('games');
+    }
+
+    public getGame(id: number) {
+        return this.getRequest<ServerGame>(`games/${id}`);
     }
 }

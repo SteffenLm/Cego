@@ -16,9 +16,10 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GameDetailComponent } from './game-detail/game-detail.component';
 
 @NgModule({
-  declarations: [GamesOverviewComponent, GameAddComponent],
+  declarations: [GamesOverviewComponent, GameAddComponent, GameDetailComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

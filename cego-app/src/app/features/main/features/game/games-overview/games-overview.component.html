@@ -1,5 +1,5 @@
 <mat-action-list @list>
-    <button mat-list-item @item *ngFor='let game of games'>
+    <button mat-list-item @item *ngFor='let game of games' routerLink="{{ game.id }}">
         <div matLine>{{ game.name }}</div>
         <div matLine>{{ game.created | date }}</div>
     </button>

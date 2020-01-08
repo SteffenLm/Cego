@@ -1,26 +1,45 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from '../main.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MenuEntryComponent } from './components/menu/menu-entry/menu-entry.component';
-import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
+
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from '@auth0/angular-jwt';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+
 import { UserService } from './services/user.service';
 import { MainService } from './services/main.service';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent,
+  declarations: [
+    HeaderComponent,
     MainComponent,
     MenuComponent,
-    MenuEntryComponent],
+    MenuEntryComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressBarModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   providers: [
     MainService,

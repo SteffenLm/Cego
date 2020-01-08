@@ -17,6 +17,12 @@ export const Routes: Route[] = [
         action: "readAll"
     },
     {
+        method: "get",
+        route: "/api/games/:id",
+        controller: GameController,
+        action: "readOne"
+    },
+    {
         method: "post",
         route: "/api/games",
         controller: GameController,

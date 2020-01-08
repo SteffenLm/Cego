@@ -18,10 +18,6 @@ const routes: Routes = [
                 loadChildren: () => import('./features/game/game.module').then(mod => mod.GameModule)
             },
             {
-                path: '',
-                redirectTo: 'profile'
-            },
-            {
                 path: '**',
                 redirectTo: 'profile'
             }

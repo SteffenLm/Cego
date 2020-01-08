@@ -68,7 +68,7 @@ export class LoginService extends Api {
       (response) => {
         this.setUsername(response.jwt);
         localStorage.setItem(this.JWT, response.jwt);
-        this.router.navigate(['']);
+        this.router.navigate(['/games']);
       },
       () => { this.snackBar.open('Login fehlgeschlagen'.toUpperCase()); }
     );
