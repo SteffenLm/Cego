@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { HttpRequest, HttpInterceptor, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { LoginService } from '../core/login/login.service';
+import { LoginService } from '../../../../core/services/login.service';
 import { retry, catchError } from 'rxjs/operators';
-import { MainService } from './main.service';
+import { MainService } from '../services/main.service';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {

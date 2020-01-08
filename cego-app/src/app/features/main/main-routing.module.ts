@@ -11,11 +11,11 @@ const routes: Routes = [
         children: [
             {
                 path: 'profile',
-                loadChildren: () => import('./../profile/profile.module').then(mod => mod.ProfileModule)
+                loadChildren: () => import('./features/profile/profile.module').then(mod => mod.ProfileModule)
             },
             {
                 path: 'games',
-                loadChildren: () => import('./../game/game.module').then(mod => mod.GameModule)
+                loadChildren: () => import('./features/game/game.module').then(mod => mod.GameModule)
             },
             {
                 path: '',

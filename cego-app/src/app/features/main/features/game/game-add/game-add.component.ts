@@ -4,7 +4,7 @@ import { map, startWith, tap } from 'rxjs/operators';
 import { ServerPlayer, NetworkGame, GameForm } from './game-add.model';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from 'src/app/core/login/login.service';
+import { LoginService } from 'src/app/core/services/login.service';
 import { GameService } from '../game.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GamesOverviewComponent } from '../games-overview/games-overview.component';

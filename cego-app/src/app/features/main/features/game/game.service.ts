@@ -1,4 +1,4 @@
-import { Api } from '../core/api.model';
+import { Api } from '../../../../shared/api.model';
 import { HttpClient } from '@angular/common/http';
 import { ServerGames } from './game.model';
 import { Injectable } from '@angular/core';

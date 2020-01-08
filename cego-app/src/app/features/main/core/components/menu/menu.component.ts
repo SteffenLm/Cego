@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
-import { MainService } from '../main.service';
+import { MainService } from '../../services/main.service';
 import { MenuEntry } from './menu.model';
 import { Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';

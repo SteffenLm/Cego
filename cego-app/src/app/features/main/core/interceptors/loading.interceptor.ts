@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpRequest, HttpInterceptor, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MainService } from './main.service';
+import { MainService } from '../services/main.service';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable()

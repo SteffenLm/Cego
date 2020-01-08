@@ -6,8 +6,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { Api } from '../api.model';
-import { ServerLogin, ServerResponse } from './login.model';
+import { Api } from '../../shared/api.model';
+
+interface ServerLogin {
+  username: string;
+  password: string;
+}
+
+interface ServerResponse {
+  jwt: string;
+}
+
+
 
 @Injectable()
 export class LoginService extends Api {

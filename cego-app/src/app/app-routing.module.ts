@@ -3,18 +3,16 @@ import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
-import { AppAuthGuard } from './app-auth-guard.service';
-
-import { LoginComponent } from './core/login/login.component';
+import { AppAuthGuard } from './core/services/app-auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule)
   },
   {
     path: '',
-    loadChildren: () => import('./main/main.module').then(mod => mod.MainModule),
+    loadChildren: () => import('./features/main/main.module').then(mod => mod.MainModule),
     canActivate: [AppAuthGuard]
   },
   {
@@ -29,9 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    enableTracing: true
-  })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
