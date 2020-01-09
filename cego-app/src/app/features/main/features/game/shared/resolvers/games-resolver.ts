@@ -10,6 +10,6 @@ export class GamesResolver implements Resolve<Observable<ReadGameResponse[]>> {
     constructor(private gameService: GameService) { }
 
     resolve(): Observable<ReadGameResponse[]> {
-        return this.gameService.getAllGames();
+        return this.gameService.readGames();
     }
 }
