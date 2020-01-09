@@ -4,10 +4,10 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { GamesOverviewComponent } from './games-overview/games-overview.component';
 import { GameAddComponent } from './game-add/game-add.component';
-import { GamesResolver } from './games-overview/games-resolver';
-import { PlayersResolver } from './game-add/players-resolver';
+import { GamesResolver } from './shared/resolvers/games-resolver';
+import { PlayersResolver } from './shared/resolvers/players-resolver';
 import { GameDetailComponent } from './game-detail/game-detail.component';
-import { GameResolver } from './game-detail/game-resolver';
+import { GameResolver } from './shared/resolvers/game-resolver';
 
 const routes: Routes = [
     { path: '', component: GamesOverviewComponent, resolve: { games: GamesResolver } },

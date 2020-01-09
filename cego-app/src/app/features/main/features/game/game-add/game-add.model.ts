@@ -3,16 +3,6 @@ export interface ServerPlayer {
     username: string;
 }
 
-export interface NetworkGame {
-    name: string;
-    creator: string;
-    playerIds: number[];
-}
-
-export interface ServerGameCreated {
-    gameid: number;
-}
-
 export interface GameForm {
     gamename: string;
     player1: PlayerForm;

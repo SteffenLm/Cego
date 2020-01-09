@@ -1,12 +1,13 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { map, startWith, tap } from 'rxjs/operators';
-import { ServerPlayer, NetworkGame, GameForm } from './game-add.model';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { ServerPlayer, GameForm } from './game-add.model';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/login.service';
-import { GameService } from '../game.service';
+import { GameService } from '../shared/game.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CreateGameRequest } from '../shared/game.model';
 
 
 @Component({
@@ -114,12 +115,12 @@ export class GameAddComponent implements OnInit {
 
   public onSubmit() {
     const formValues: GameForm = this.createGameForm.value;
-    const requestBody: NetworkGame = {
+    const requestBody: CreateGameRequest = {
       name: formValues.gamename,
       playerIds: [formValues.player1.id, formValues.player2.id, formValues.player3.id],
       creator: this.loginService.getUsername()
     };
-    this.gameService.saveGame(requestBody).subscribe(
+    this.gameService.createGame(requestBody).subscribe(
       (response) => {
         this.router.navigate(['/games', response.gameid]);
       },

@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 
 
 import { GameService } from '../game.service';
-import { ServerGame } from './game-detail.model';
+import { ReadGameResponse } from '../game.model';
 
 @Injectable()
-export class GameResolver implements Resolve<Observable<ServerGame>> {
+export class GameResolver implements Resolve<Observable<ReadGameResponse>> {
 
     constructor(private gameService: GameService) { }
 
-    resolve(): Observable<ServerGame> {
+    resolve(): Observable<ReadGameResponse> {
         return this.gameService.getGame(8);
     }
 }

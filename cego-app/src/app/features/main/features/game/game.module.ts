@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { GameRoutingModule } from './game-routing.module';
-import { GameService } from './game.service';
+import { GameService } from './shared/game.service';
 
 import { GamesOverviewComponent } from './games-overview/games-overview.component';
 import { GameAddComponent } from './game-add/game-add.component';

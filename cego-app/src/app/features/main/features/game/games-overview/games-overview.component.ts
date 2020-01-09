@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerGames } from '../game.model';
+import { ReadGameResponse } from '../shared/game.model';
 import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 
@@ -25,7 +25,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GamesOverviewComponent implements OnInit {
 
-  public games: ServerGames[];
+  public games: ReadGameResponse[];
 
   constructor(public route: ActivatedRoute) { }
 

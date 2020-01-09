@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  template: '<app-header></app-header><app-menu></app-menu>',
+  styles: []
 })
 export class MainComponent implements OnInit {
 
