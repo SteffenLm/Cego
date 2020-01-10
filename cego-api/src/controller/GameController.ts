@@ -26,7 +26,9 @@ export class GameController implements Read<Game>, Create<NetworkGameResult> {
     }
 
     public async readOne(request: Request, response: Response, next: NextFunction): Promise<Game> {
-        return this.gameRepository.findOne(request.params.id);
+        return this.gameRepository.findOne(request.params.id, {
+            relations: ['players']
+        });
     }
 
     public async createOne(request: Request, response: Response, next: NextFunction): Promise<NetworkGameResult> {

@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Runde hinzufügen</h1>
+
+<div fxLayout="column">
+  <mat-form-field class="w-full">
+    <mat-label>Spieler</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let player of players" [value]="player.id">
+        {{ player.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <mat-label>Wert</mat-label>
+    <input type="number" matInput />
+  </mat-form-field>
+
+  <mat-radio-group fxFlex fxLayout="column">
+    <mat-radio-button value="won" class="py-2">Gewonnen</mat-radio-button>
+    <mat-radio-button value="lost" class="py-2">Verloren</mat-radio-button>
+  </mat-radio-group>
+</div>
+<mat-dialog-actions>
+  <button mat-raised-button style="height: 36px; min-width: 100px;" color="primary" (click)="onAddRoundToGame()">
+      <div *ngIf="!isDoingRequest; else spinner">Hinzufügen</div>
+    </button>
+  <button mat-button mat-dialog-close>Abbrechen</button>
+</mat-dialog-actions>
+
+<ng-template #spinner>
+    <mat-spinner class="mx-auto" diameter="26" color="accent" mode="indeterminate"></mat-spinner>
+</ng-template>

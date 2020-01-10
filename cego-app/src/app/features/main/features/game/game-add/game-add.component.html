@@ -1,6 +1,6 @@
-<form @item class="m1" [formGroup]="this.createGameForm" (ngSubmit)="onSubmit()">
-    <mat-toolbar color="primary" class="rt1">Spiel erstellen</mat-toolbar>
-    <mat-card class="rt0" fxLayout="column" style="padding-bottom: 10px;">
+<form @item class="m-1" [formGroup]="this.createGameForm" (ngSubmit)="onSubmit()">
+    <mat-toolbar color="primary" class="rounded-t">Spiel erstellen</mat-toolbar>
+    <mat-card class=" pb-10" fxLayout="column">
         <mat-form-field appearance="outline">
             <input autocomplete="off" matInput type="text" formControlName="gamename" spellcheck="false">
             <mat-label>Spielname</mat-label>

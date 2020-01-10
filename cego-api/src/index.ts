@@ -28,6 +28,9 @@ createConnection().then(async connection => {
             }
         });
     });
+    app.all('*', (req: Request, res: Response) => {
+        res.status(404).end();
+    })
 
     // start express server
     app.listen(3000);
