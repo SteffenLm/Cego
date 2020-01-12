@@ -34,7 +34,7 @@ export class Game {
         this.created = jsonGame.created;
         this.id = jsonGame.id;
         this.name = jsonGame.name;
-        this.creator = jsonGame.creator;
+        this.creator = new Player(jsonGame.creator);
         jsonGame.players.forEach((player) => {
             this.players.push(new Player(player));
         });
