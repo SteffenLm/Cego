@@ -19,11 +19,16 @@ export class GameService extends Api {
         return this.postRequest<CreateGameRequest, CreateGameResponse>('games', body);
     }
 
-    public readGames():  Observable<ReadGameResponse[]> {
-        return this.getRequest<ReadGameResponse[]>('games') ;
+    public readGames(): Observable<ReadGameResponse[]> {
+        return this.getRequest<ReadGameResponse[]>('games');
     }
 
     public readGame(id: number): Observable<ReadGameResponse> {
         return this.getRequest<ReadGameResponse>(`games/${id}`);
     }
+
+    public deleteGame(id: number): Observable<null> {
+        return this.deleteRequest(`games/${id}`);
+    }
+
 }

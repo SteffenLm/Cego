@@ -1,8 +1,10 @@
-import { getRepository } from "typeorm";
+import { getRepository, DeleteResult } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { Read, Create } from "./BaseController";
+import { Read, Create, Delete } from "./BaseController";
 import { Game } from "../entity/Game";
 import { User } from "../entity/User";
+import { resolve } from "dns";
+import { rejects } from "assert";
 
 interface NetworkGame {
     name: string;
@@ -14,7 +16,7 @@ interface NetworkGameResult {
     gameid: number;
 }
 
-export class GameController implements Read<Game>, Create<NetworkGameResult> {
+export class GameController implements Read<Game>, Create<NetworkGameResult>, Delete {
 
     private gameRepository = getRepository(Game);
     private userRepository = getRepository(User);
@@ -27,7 +29,7 @@ export class GameController implements Read<Game>, Create<NetworkGameResult> {
 
     public async readOne(request: Request, response: Response, next: NextFunction): Promise<Game> {
         return this.gameRepository.findOne(request.params.id, {
-            relations: ['players']
+            relations: ['players', 'creator']
         });
     }
 
@@ -48,6 +50,24 @@ export class GameController implements Read<Game>, Create<NetworkGameResult> {
                 gameid: result.id
             }
             resolve(response);
+        });
+    }
+    public async deleteOne(request: Request, response: Response, next: NextFunction): Promise<''> {
+        return new Promise((resolve, reject) => {
+            this.gameRepository.delete(request.params.id)
+                .then((result) => {
+                    if (result.affected === 1) {
+                        response.status(200);
+                        resolve('');
+                    } else {
+                        response.status(404);
+                        resolve('');
+                    }
+                })
+                .catch(() => {
+                    response.status(500);
+                    reject('');
+                })
         });
     }
 }

@@ -21,7 +21,9 @@ createConnection().then(async connection => {
         (app)[route.method](route.route, (req: Request, res: Response, next: Function) => {
             const result = (new (route.controller as any))[route.action](req, res, next);
             if (result instanceof Promise) {
-                result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
+                result
+                    .then(result => result !== null && result !== undefined ? res.send(result) : undefined)
+                    .catch(() => { res.status(500).send() });
 
             } else if (result !== null && result !== undefined) {
                 res.json(result);

@@ -14,5 +14,5 @@ export interface Update<T> {
 }
 
 export interface Delete {
-    deleteOne(request: Request, response: Response, next: NextFunction): Promise<boolean>;
+    deleteOne(request: Request, response: Response, next: NextFunction): Promise<''>;
 }

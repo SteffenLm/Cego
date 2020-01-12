@@ -14,6 +14,7 @@ export interface ReadGameResponse {
     id: number;
     name: string;
     created: Date;
+    creator: ReadPlayerResponse;
     players: ReadPlayerResponse[];
 }
 
@@ -22,6 +23,7 @@ export class Game {
     public created: Date;
     public id: number;
     public name: string;
+    public creator: Player;
     public players: Player[] = [];
 
     private rawGame: ReadGameResponse;
@@ -32,6 +34,7 @@ export class Game {
         this.created = jsonGame.created;
         this.id = jsonGame.id;
         this.name = jsonGame.name;
+        this.creator = jsonGame.creator;
         jsonGame.players.forEach((player) => {
             this.players.push(new Player(player));
         });

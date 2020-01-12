@@ -4,6 +4,8 @@ import { Game } from '../shared/game.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRoundDialogComponent } from './add-round-dialog/add-round-dialog.component';
 import { Player } from '../../../shared/models/player.model';
+import { GameService } from '../shared/game.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-game-detail',
@@ -14,7 +16,11 @@ export class GameDetailComponent implements OnInit {
 
   public game: Game;
 
-  constructor(public route: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(
+    public route: ActivatedRoute,
+    private dialog: MatDialog,
+    private gameService: GameService,
+    private snackBar: MatSnackBar) { }
 
   public ngOnInit(): void {
     this.game = new Game(this.route.snapshot.data.game);
@@ -23,8 +29,25 @@ export class GameDetailComponent implements OnInit {
   public onAddRoundDialog(): void {
     this.dialog.open<AddRoundDialogComponent, Player[]>(AddRoundDialogComponent, {
       data: this.game.players,
-      panelClass: ['w-full', 'm-0']
+      panelClass: ['w-full', 'm-0'],
+      disableClose: true
     });
+  }
+
+  public onDeleteGame(): void {
+    this.gameService.deleteGame(this.game.id).subscribe(
+      () => {
+        this.snackBar.open('Spiel gelöscht');
+      },
+      () => {
+        this.snackBar.open('Unerwarteter Fehler', 'Wiederholen')
+          .onAction().subscribe(
+            () => {
+              this.onDeleteGame();
+            }
+          );
+      }
+    );
   }
 
 }

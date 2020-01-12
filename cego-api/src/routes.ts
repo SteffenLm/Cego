@@ -23,6 +23,12 @@ export const Routes: Route[] = [
         action: "readOne"
     },
     {
+        method: "delete",
+        route: "/api/games/:id",
+        controller: GameController,
+        action: "deleteOne"
+    },
+    {
         method: "post",
         route: "/api/games",
         controller: GameController,

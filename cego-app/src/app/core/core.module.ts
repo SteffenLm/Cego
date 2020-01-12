@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppAuthGuard } from './services/app-auth-guard.service';
 import { LoginService } from './services/login.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 
 
@@ -16,7 +16,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   providers: [
     AppAuthGuard,
-    LoginService
+    LoginService,
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
   ]
 })
 export class CoreModule { }

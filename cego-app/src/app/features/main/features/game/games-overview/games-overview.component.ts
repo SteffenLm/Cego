@@ -18,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
     ]),
     trigger('list', [
       transition(':enter', [
-        query('@item', stagger(50, animateChild()))
+        query('@item', stagger(50, animateChild()), { optional: true })
       ]),
     ])
   ]
