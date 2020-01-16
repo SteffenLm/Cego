@@ -11,18 +11,15 @@
 <div class="mx-2">
   <h3>Spieler</h3>
   <div fxLayout="row" fxLayoutAlign="space-evenly">
-    <div>
-      {{ game.creator.username }}
-    </div>
     <div *ngFor="let player of this.game.players">
       {{ player.username }}
     </div>
+    <div>
+      {{ game.creator.username }}
+    </div>
   </div>
-
-  <div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div fxLayout="row" *ngFor="let round of this.game.renderedRounds">
+    <div *ngFor="let value of round.values">{{ value }}</div>
   </div>
 </div>
 <button
