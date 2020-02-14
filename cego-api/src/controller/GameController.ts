@@ -28,10 +28,8 @@ export class GameController implements Read<Game>, Create<NetworkGameResult>, De
     }
 
     public async readOne(request: Request, response: Response, next: NextFunction): Promise<Game> {
-        return this.gameRepository.findOne(request.params.id, {
-            relations: ['players', 'creator', 'rounds', 'rounds.player'],
-            // relations: ['players', 'creator', 'rounds', 'rounds.player', 'rounds.game', 'rounds.game.players'],
-
+        return this.gameRepository.findOneOrFail(request.params.id, {
+            relations: ['players', 'creator', 'rounds', 'rounds.player']
         });
     }
 

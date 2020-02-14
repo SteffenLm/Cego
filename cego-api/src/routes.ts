@@ -1,6 +1,7 @@
 import { UserController } from "./controller/UserController";
 import { LoginController } from "./controller/LoginController";
 import { GameController } from "./controller/GameController";
+import { RoundController } from "./controller/RoundController";
 
 interface Route {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -32,6 +33,12 @@ export const Routes: Route[] = [
         method: "post",
         route: "/api/games",
         controller: GameController,
+        action: "createOne"
+    },
+    {
+        method: "post",
+        route: "/api/games/:id/round",
+        controller: RoundController,
         action: "createOne"
     },
     {

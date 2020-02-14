@@ -20,14 +20,14 @@ export class LoginController {
         let user = new User();
         user.username = body.username;
         const queriedUser = <User>await this.userRepository.findOneOrFail(user, {
-            select: ['jwtkey', 'password', 'username']
+            select: ['id', 'jwtkey', 'password', 'username']
         }).catch(() => {
             Responses.BadRequest(response);
         });
         LoginController.passwordIsCorrect(body, queriedUser)
             .then(() => {
                 genSalt(10).then((salt) => {
-                    jwt.sign({ "username": queriedUser.username }, salt, (err, token) => {
+                    jwt.sign({ "uid": queriedUser.id }, salt, (err, token) => {
                         if (err) {
                             Responses.BadRequest(response);
                         } else {
