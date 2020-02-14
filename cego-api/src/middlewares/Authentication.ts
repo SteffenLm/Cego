@@ -4,11 +4,7 @@ import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
 import { Responses } from '../helpers/Responses';
 
-interface TokenPayload {
-    exp: number;
-    iat: number;
-    uid: number;
-}
+import { DecodedTokenPayload } from '../model/JWT';
 
 export class Authentication {
 
@@ -19,7 +15,7 @@ export class Authentication {
                     const encodedToken = <string>(await Authentication.getToken(request, response).catch((r) => {
                         Responses.BadRequest(response);
                     }));
-                    const decodedToken = <TokenPayload>decode(encodedToken);
+                    const decodedToken = <DecodedTokenPayload>decode(encodedToken);
 
                     const userRepository = getRepository(User);
 
