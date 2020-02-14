@@ -4,20 +4,40 @@ import { Read, Create, Delete } from "./BaseController";
 import { Game } from "../entity/Game";
 import { User } from "../entity/User";
 import { Round } from "../entity/Round";
+import { RequestHelper } from "../helpers/RequestHelper";
 
-interface NetworkRoundResult {
-    gameid: number;
+interface NetworkRound {
+    name: string;
+    creator: string;
+    playerIds: number[];
 }
 
-export class RoundController implements Create<NetworkRoundResult> {
+interface NetworkRoundResult {
+    roundId: number;
+}
 
-    private gameRepository = getRepository(Round);
-    private userRepository = getRepository(User);
+export class RoundController implements Read<Round>{
 
-    public createOne(request: Request, response: Response, next: NextFunction) {
-        return new Promise<NetworkRoundResult>((resolve, reject) => {
-            console.log(request);
+    private roundRepository = getRepository(Round);
+    private gameRepository = getRepository(Game);
+
+    public readOne(request: Request, response: Response, next: NextFunction) {
+        return new Promise<Round>(async (resolve, reject) => {
+            const gameId: string = <string>(await RequestHelper.getGameId(request).catch(reject));
+            const roundId: string = <string>(await RequestHelper.getRoundId(request).catch(reject));
         });
     }
-
+    public readAll(request: Request, response: Response, next: NextFunction) {
+        return new Promise<Round[]>(async (resolve, reject) => {
+            RequestHelper.getGameId(request)
+                .then((gameId) => {
+                    return this.gameRepository.findOneOrFail(gameId);
+                })
+                .then((game) => {
+                    return this.roundRepository.find({ where: { game: game } });
+                })
+                .then(resolve)
+                .catch(reject);
+        });
+    }
 }

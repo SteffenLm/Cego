@@ -35,11 +35,17 @@ export const Routes: Route[] = [
         controller: GameController,
         action: "createOne"
     },
+    // {
+    //     method: "post",
+    //     route: "/api/games/:gameId/round",
+    //     controller: RoundController,
+    //     action: "createOne"
+    // },
     {
-        method: "post",
-        route: "/api/games/:id/round",
+        method: "get",
+        route: "/api/games/:gameId/rounds",
         controller: RoundController,
-        action: "createOne"
+        action: "readAll"
     },
     {
         method: "get",
