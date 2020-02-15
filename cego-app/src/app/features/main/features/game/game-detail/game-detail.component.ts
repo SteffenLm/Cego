@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class GameDetailComponent implements OnInit {
 
   public game: Game;
+  private participatingPlayers: Player[];
 
   constructor(
     public route: ActivatedRoute,
@@ -24,11 +25,13 @@ export class GameDetailComponent implements OnInit {
 
   public ngOnInit(): void {
     this.game = new Game(this.route.snapshot.data.game);
+    this.participatingPlayers = this.game.players.slice();
+    this.participatingPlayers.push(this.game.creator);
   }
 
   public onAddRoundDialog(): void {
     this.dialog.open<AddRoundDialogComponent, Player[]>(AddRoundDialogComponent, {
-      data: this.game.players,
+      data: this.participatingPlayers.slice(),
       panelClass: ['w-full', 'm-0'],
       disableClose: true
     });

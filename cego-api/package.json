@@ -22,7 +22,7 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "dev": "nodemon src/index.ts",
+      "dev": "nodemon --inspect src/index.ts",
       "build": "tsc --sourceMap false",
       "migrateup": "ts-node ./node_modules/typeorm/cli.js migration:run",
       "migratedown": "ts-node ./node_modules/typeorm/cli.js migration:revert",

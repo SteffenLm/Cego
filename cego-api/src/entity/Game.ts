@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToMany, JoinTable, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToMany, JoinTable, ManyToOne, OneToMany } from "typeorm";
 import { User } from "./User";
+import { Round } from "./Round";
 
 @Entity()
 export class Game {
@@ -18,6 +19,9 @@ export class Game {
 
     @CreateDateColumn()
     created: string;
+
+    @OneToMany(type => Round, round => round.game)
+    rounds: Round[];
 
     @ManyToOne(type => User, user => user.games)
     creator: User;
