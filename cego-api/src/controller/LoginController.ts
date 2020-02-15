@@ -3,11 +3,15 @@ import { NextFunction, Request, Response } from 'express';
 import { User } from '../entity/User';
 import { compare, genSalt } from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import { Responses } from '../helpers/Responses';
+import { CreatedResponse, FoundResponse } from '../model/HTTPResponses';
 
 interface ClientRequest {
     username: string;
     password: string;
+}
+
+interface LoginToken {
+    jwt: string;
 }
 
 
@@ -15,31 +19,29 @@ export class LoginController {
 
     private userRepository = getRepository(User);
 
-    async createToken(request: Request, response: Response, next: NextFunction) {
-        const body = <ClientRequest>request.body;
-        let user = new User();
-        user.username = body.username;
-        const queriedUser = <User>await this.userRepository.findOneOrFail(user, {
-            select: ['id', 'jwtkey', 'password', 'username']
-        }).catch(() => {
-            Responses.BadRequest(response);
-        });
-        LoginController.passwordIsCorrect(body, queriedUser)
-            .then(() => {
-                genSalt(10).then((salt) => {
-                    jwt.sign({ "uid": queriedUser.id }, salt, (err, token) => {
-                        if (err) {
-                            Responses.BadRequest(response);
-                        } else {
-                            this.userRepository.update({ username: queriedUser.username }, { jwtkey: salt });
-                            response.status(200).send({
-                                jwt: token
-                            });
-                        }
+    async createToken(request: Request, response: Response, next: NextFunction): Promise<FoundResponse<LoginToken>> {
+        return new Promise(async (resolve, reject) => {
+            const body = <ClientRequest>request.body;
+            let user = new User();
+            user.username = body.username;
+            const queriedUser = <User>await this.userRepository.findOneOrFail(user, {
+                select: ['id', 'jwtkey', 'password', 'username']
+            }).catch(reject);
+            LoginController.passwordIsCorrect(body, queriedUser)
+                .then(() => {
+                    genSalt(10).then((salt) => {
+                        jwt.sign({ "uid": queriedUser.id }, salt, (err, token) => {
+                            if (err) {
+                                reject();
+                            } else {
+                                this.userRepository.update({ username: queriedUser.username }, { jwtkey: salt });
+                                resolve(new FoundResponse({ jwt: token }));
+                            }
+                        });
                     });
-                });
-            })
-            .catch(() => { Responses.BadRequest(response); });
+                })
+                .catch(reject);
+        });
     }
 
     private static passwordIsCorrect(clearPassword: ClientRequest, queriedUser: User): Promise<boolean> {
@@ -49,9 +51,7 @@ export class LoginController {
                     .then((isCorrect) => {
                         isCorrect ? resolve(true) : reject(false);
                     })
-                    .catch((err) => {
-                        debugger;
-                    });
+                    .catch(reject);
             });
     }
 }

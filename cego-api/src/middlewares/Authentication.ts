@@ -2,56 +2,50 @@ import { Request, Response, NextFunction } from 'express';
 import { verify, decode } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
-import { Responses } from '../helpers/Responses';
 
 import { DecodedTokenPayload } from '../model/JWT';
+import { BadRequestResponse, ErrorReasons, sendResponse, UnauthorizedResponse } from '../model/HTTPResponses';
 
 export class Authentication {
 
-    public async checkJwt(request: Request, response: Response, nextFunction: NextFunction): Promise<null> {
-        return new Promise(
-            async (resolve, reject) => {
-                if (request.path !== '/api/login') {
-                    const encodedToken = <string>(await Authentication.getToken(request, response).catch((r) => {
-                        Responses.BadRequest(response);
-                    }));
+    public async checkJwt(request: Request, response: Response, nextFunction: NextFunction) {
+        if (request.path !== '/api/login') {
+            Authentication.getToken(request)
+                .then((encodedToken) => {
                     const decodedToken = <DecodedTokenPayload>decode(encodedToken);
-
                     const userRepository = getRepository(User);
-
                     userRepository.findOneOrFail(
                         {
                             select: ['username', 'jwtkey'],
                             where: { id: decodedToken.uid }
-                        }
-                    )
+                        })
                         .then((user) => {
-                            verify(encodedToken, user.jwtkey, (err, result) => {
+                            verify(encodedToken, user.jwtkey, (err) => {
                                 if (err) {
-                                    response.status(401).end();
+                                    sendResponse(response, new UnauthorizedResponse());
                                 } else {
                                     nextFunction();
                                 }
                             })
                         })
-                        .catch((err) => {
-                            response.status(401).end();
-                        });
-                } else {
-                    nextFunction();
-                }
-            });
+                        .catch(() => { sendResponse(response, new UnauthorizedResponse()); });
+                })
+                .catch(() => {
+                    sendResponse(response, new BadRequestResponse(ErrorReasons.TokenMissing))
+                });
+        } else {
+            nextFunction();
+        }
     }
 
-    private static async getToken(request: Request, response: Response): Promise<string> {
-        return new Promise(
-            (resolve, reject) => {
-                if (request.headers.authorization === undefined) {
-                    reject()
-                } else {
-                    resolve(request.headers.authorization.substring(7));
-                }
-            });
+    private static async getToken(request: Request): Promise<string> {
+        return new Promise((resolve, reject) => {
+            if (request.headers.authorization === undefined) {
+                reject()
+            } else {
+                resolve(request.headers.authorization.substring(7));
+            }
+        });
     }
 
 }
