@@ -1,0 +1,19 @@
+{
+  "name": "default",
+  "type": "mariadb",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "SRjFaeN6cQTfIJgLXCi8",
+  "database": "cego_db",
+  "synchronize": false,
+  "logging": true,
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
+}
