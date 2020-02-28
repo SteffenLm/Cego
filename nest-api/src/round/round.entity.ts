@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from "typeorm";
 import { User } from "../user/user.entity";
-import { Game } from "./game.entity";
+import { Game } from "../games/game.entity";
 
 
 @Entity()
@@ -17,9 +17,9 @@ export class Round {
     })
     value: number;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, user => user.id)
     player: User;
 
-    @ManyToOne(() => Game)
+    @ManyToOne(() => Game, game => game.id)
     game: Game;
 }

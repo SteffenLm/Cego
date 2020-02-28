@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToMany, JoinTable, ManyToOne, OneToMany } from "typeorm";
 import { User } from "../user/user.entity";
-import { Round } from "./round.entity";
+import { Round } from "../round/round.entity";
 
 @Entity()
 export class Game {

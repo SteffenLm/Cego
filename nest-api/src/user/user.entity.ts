@@ -42,6 +42,6 @@ export class User {
     })
     jwtkey: string;
 
-    @OneToMany(type => Game, game => game.creator)
+    @OneToMany(() => Game, game => game.creator)
     games: Game[];
 }
