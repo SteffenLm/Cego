@@ -1,10 +1,10 @@
 import { getRepository } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { Read } from "./BaseController";
+import { Read, Create } from "./BaseController";
 import { Game } from "../entity/Game";
 import { Round } from "../entity/Round";
 import { RequestHelper } from "../helpers/RequestHelper";
-import { FoundResponse } from "../model/HTTPResponses";
+import { FoundResponse, CreatedResponse } from "../model/HTTPResponses";
 
 interface NetworkRound {
     name: string;
@@ -16,7 +16,7 @@ interface NetworkRoundResult {
     roundId: number;
 }
 
-export class RoundController implements Read<Round>{
+export class RoundController implements Read<Round> {
 
     private roundRepository = getRepository(Round);
     private gameRepository = getRepository(Game);

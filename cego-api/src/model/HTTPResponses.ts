@@ -51,7 +51,7 @@ export class UnauthorizedResponse extends BaseResponse {
     }
 }
 
-export class NotFoundResponse<T> extends BaseResponse {
+export class NotFoundResponse extends BaseResponse {
     constructor() {
         super(StatusCodes.NotFound, '');
     }

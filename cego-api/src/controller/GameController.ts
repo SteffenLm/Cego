@@ -15,7 +15,7 @@ interface NetworkGameResult {
     gameid: number;
 }
 
-export class GameController implements Read<Game>, Create<NetworkGameResult>, Delete<Game> {
+export class GameController implements Read<Game>, Create {
 
     private gameRepository = getRepository(Game);
     private userRepository = getRepository(User);
