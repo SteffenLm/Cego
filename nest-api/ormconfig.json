@@ -4,16 +4,17 @@
   "host": "localhost",
   "port": 3306,
   "username": "root",
-  "password": "SRjFaeN6cQTfIJgLXCi8",
+  "password": "",
   "database": "cego_db",
   "synchronize": false,
   "logging": true,
   "entities": ["dist/**/*.entity{.ts,.js}"],
-  "migrations": ["src/migration/**/*.ts"],
+  "migrations": ["dist/migrations/*{.ts,.js}"],
   "subscribers": ["src/subscriber/**/*.ts"],
+  "migrationsRun": true,
   "cli": {
     "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
+    "migrationsDir": "src/migrations",
     "subscribersDir": "src/subscriber"
   }
 }
