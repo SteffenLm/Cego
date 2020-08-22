@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "cego-api"
+		},
+		{
+			"path": "nest-api"
 		}
 	]
 }
