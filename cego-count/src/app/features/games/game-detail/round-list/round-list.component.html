@@ -1,0 +1,11 @@
+<div class="flex flex-row justify-evenly" *ngFor="let round of rounds; let i = index">
+    <div *ngFor="let player of players">
+        {{ this.calculatePlayer(player, i) }}
+    </div>
+</div>
+<mat-divider *ngIf="this.rounds.length > 1"></mat-divider>
+<div *ngIf="this.rounds.length > 1" class="flex flex-row justify-evenly">
+    <div *ngFor="let player of players">
+        {{ this.calculateSum(player) }}
+    </div>
+</div>

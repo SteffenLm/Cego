@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { GamesService } from '../shared/games.service';
 import { Game } from '../shared/game.model';
@@ -19,6 +19,9 @@ export class GameDetailComponent implements OnInit {
 
   public game: Game;
   private gameIndex: number;
+  public rounds: Round[];
+  public players: string[];
+
 
   constructor(
     public route: ActivatedRoute,
@@ -30,8 +33,14 @@ export class GameDetailComponent implements OnInit {
   ngOnInit(): void {
     const paramId = this.route.snapshot.paramMap.get('id');
     this.gameIndex = parseInt(paramId, 10);
-    this.game = this.gamesService.getGame(this.gameIndex);
+    this.reloadRounds();
     this.roundsService.gameIndex = this.gameIndex;
+  }
+
+  private reloadRounds(): void {
+    this.game = this.gamesService.getGame(this.gameIndex);
+    this.rounds =  this.game.rounds;
+    this.players = this.game.players;
   }
 
   onDeleteGame(): void {
@@ -48,6 +57,9 @@ export class GameDetailComponent implements OnInit {
       panelClass: ['w-full', 'm-0'],
       disableClose: true
     });
-    dialogRef.afterClosed().subscribe((round) => { this.roundsService.addRound(round); });
+    dialogRef.afterClosed().subscribe((round) => {
+      this.roundsService.addRound(round);
+      this.reloadRounds();
+    });
   }
 }

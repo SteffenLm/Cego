@@ -14,12 +14,12 @@
             <input type="number" formControlName="value" matInput />
         </mat-form-field>
         <mat-radio-group formControlName="sign" class="flex flex-col">
-            <mat-radio-button value="" class="py-2">Gewonnen</mat-radio-button>
+            <mat-radio-button value="+" class="py-2">Gewonnen</mat-radio-button>
             <mat-radio-button value="-" class="py-2">Verloren</mat-radio-button>
         </mat-radio-group>
     </div>
     <mat-dialog-actions>
-        <button mat-raised-button style="height: 36px; min-width: 100px;" color="primary" (click)="onAddRoundToGame()">
+        <button [disabled]="!this.roundForm.valid" mat-raised-button style="height: 36px; min-width: 100px;" color="primary" (click)="onAddRoundToGame()">
             <div *ngIf="!isCalculatingTable; else spinner">Hinzufügen</div>
         </button>
         <button mat-button mat-dialog-close>Abbrechen</button>
