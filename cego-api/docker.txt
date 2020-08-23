@@ -1,2 +1,0 @@
-docker run --name cego-db -e MYSQL_ROOT_PASSWORD=SRjFaeN6cQTfIJgLXCi8 -p 3306:3306 -d mariadb:10.3
-"dev": "nodemon --inspect src/index.ts",
