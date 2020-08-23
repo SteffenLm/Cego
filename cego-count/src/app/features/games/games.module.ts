@@ -7,15 +7,26 @@ import { MatListModule } from '@angular/material/list/';
 
 import { GamesRoutingModule } from './games-routing.module';
 import { GamesOverviewComponent } from './games-overview/games-overview.component';
+import { GameAddComponent } from './game-add/game-add.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [GamesOverviewComponent],
+  declarations: [GamesOverviewComponent, GameAddComponent],
   imports: [
     CommonModule,
-    MatIconModule,
-    MatListModule,
     MatButtonModule,
-    GamesRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    GamesRoutingModule
   ]
 })
 export class GamesModule { }

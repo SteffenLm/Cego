@@ -1,0 +1,28 @@
+<form @item [formGroup]="this.form" class="m-1" (ngSubmit)="onSubmit()">
+    <mat-toolbar color="primary" class="rounded-t">Spiel erstellen</mat-toolbar>
+    <mat-card class="pb-10 flex flex-col w-full">
+        <div class="flex flex-row justify-evenly">
+            <mat-form-field appearance="outline">
+                <input autocomplete="off" matInput type="text" value="" formControlName="name" spellcheck="false">
+                <mat-label>Spiel</mat-label>
+            </mat-form-field>
+        </div>
+        <div formArrayName="players">
+            <div class="flex flex-row justify-evenly" *ngFor="let player of this.players.controls; let i=index">
+                <mat-form-field appearance="outline">
+                    <input matInput type="text" spellcheck="false" [formControlName]="i">
+                    <mat-label>Mitspieler {{ (i + 1) }}</mat-label>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <mat-divider></mat-divider>
+            <div class="pt-4 flex flex-row justify-end">
+                <button class="focus:outline-none" type="submit" mat-raised-button [disabled]="!this.form.valid"
+                    color="primary">Erstellen</button>
+                <button style="margin-left: 1rem;" class="focus:outline-none" type="button" mat-button
+                    routerLink="/games">Abbrechen</button>
+            </div>
+        </div>
+    </mat-card>
+</form>

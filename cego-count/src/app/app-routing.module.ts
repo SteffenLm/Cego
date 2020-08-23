@@ -4,6 +4,9 @@ import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
+    path: '', pathMatch: 'full', redirectTo: '/games'
+  },
+  {
     path: '',
     component: MainComponent,
     children: [
