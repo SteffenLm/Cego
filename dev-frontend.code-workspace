@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "cego-app"
+		},
+		{
+			"path": "cego-count"
 		}
 	]
 }
