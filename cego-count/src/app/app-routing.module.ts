@@ -15,8 +15,8 @@ const routes: Routes = [
       //     loadChildren: () => import('./features/profile/profile.module').then(mod => mod.ProfileModule)
       // },
       {
-          path: 'games',
-          loadChildren: () => import('./features/games/games.module').then(mod => mod.GamesModule)
+        path: 'games',
+        loadChildren: () => import('./features/games/games.module').then(mod => mod.GamesModule)
       },
       // {
       //     path: '**',
@@ -31,9 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    enableTracing: true
-  })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

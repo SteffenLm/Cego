@@ -13,9 +13,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { GameDetailComponent } from './game-detail/game-detail.component';
+import { AddRoundComponent } from './game-detail/add-round/add-round.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
-  declarations: [GamesOverviewComponent, GameAddComponent],
+  declarations: [GamesOverviewComponent, GameAddComponent, GameDetailComponent, AddRoundComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -23,9 +29,13 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatDialogModule,
     MatListModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
     GamesRoutingModule
   ]
 })

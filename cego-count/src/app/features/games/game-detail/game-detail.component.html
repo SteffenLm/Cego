@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <h2>{{ game.name }}</h2>
+    <span style="flex: 1 1 auto;"></span>
+    <button class="focus:outline-none" mat-icon-button>
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button class="focus:outline-none" mat-icon-button (click)="onDeleteGame()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="mx-2 mt-2">
+    <h3 class="pl-2">Spieler</h3>
+    <div class="flex flex-row justify-evenly">
+      <div *ngFor="let player of this.game.players">
+        {{ player }}
+      </div>
+    </div>
+    <!-- <div class="flex flex-row" *ngFor="let round of this.game.renderedRounds">
+      <div *ngFor="let value of round.values">{{ value }}</div>
+    </div> -->
+  </div>
+  <button
+    color="primary"
+    style="position: fixed; margin: 1rem;"
+    class="bottom-0 right-0 focus:outline-none"
+    mat-fab
+    (click)="onAddRoundDialog()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>

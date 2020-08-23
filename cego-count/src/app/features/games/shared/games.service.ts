@@ -16,8 +16,14 @@ export class GamesService extends LocalStorageManager<Game> {
     this.persistData();
   }
 
+  public updateGame(index: number, game: Game): void {
+    this.games[index] = game;
+    this.persistData();
+  }
+
   public createGame(game: Game): void {
     game.created = new Date();
+    game.rounds = [];
     this.games.push(game);
     this.persistData();
   }
@@ -26,11 +32,17 @@ export class GamesService extends LocalStorageManager<Game> {
     return this.games.slice();
   }
 
+  public getGame(index: number): Game {
+    return this.games.slice()[index];
+  }
+
+  public deleteGame(index: number): void {
+    this.games.splice(index, 1);
+    this.persistData();
+  }
+
   private persistData(): void {
     this.sortArray();
-    this.games.forEach((game) => {
-      console.log(game.name + new Date(game.created).getMilliseconds());
-    });
     this.setItem(this.games);
   }
 
