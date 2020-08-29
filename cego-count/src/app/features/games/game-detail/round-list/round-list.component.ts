@@ -1,5 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Round } from '../../shared/round.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AddRoundComponent } from '../add-round/add-round.component';
+import { DialogData } from '../dialogdata.model';
+import { GamesService } from '../../shared/games.service';
+import { RoundsService } from '../rounds.service';
+import { EditRoundComponent, RoundDialogDTO } from '../edit-round/edit-round.component';
 
 @Component({
   selector: 'app-round-list',
@@ -10,9 +16,11 @@ export class RoundListComponent implements OnInit {
 
   @Input() public rounds: Round[];
   @Input() public players: string[];
+  @Input() public gameIndex: number;
+
   public data: any;
 
-  constructor() { }
+  constructor(private dialog: MatDialog, private roundsService: RoundsService) { }
 
   ngOnInit(): void {
     const data = {};
@@ -37,6 +45,26 @@ export class RoundListComponent implements OnInit {
       }
     });
     this.data = data;
+  }
+
+  public changeRound(i: number): void {
+    const roundIndex: number = i;
+    const dialogRef = this.dialog.open<EditRoundComponent, DialogData, RoundDialogDTO>(EditRoundComponent, {
+      data: {
+        players: this.players,
+        gameId: this.gameIndex,
+        round: this.rounds[i]
+      },
+      panelClass: ['w-full', 'm-0'],
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((roundDialogDTO) => {
+      if (roundDialogDTO.action === 'delete') {
+        this.roundsService.deleteRound(roundIndex);
+      } else {
+        this.roundsService.updateRound(roundDialogDTO.round, roundIndex);
+      }
+    });
   }
 
   public calculateSum(player: string): number {

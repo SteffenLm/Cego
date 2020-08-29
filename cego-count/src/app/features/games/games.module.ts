@@ -20,9 +20,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { RoundListComponent } from './game-detail/round-list/round-list.component';
+import { EditRoundComponent } from './game-detail/edit-round/edit-round.component';
 
 @NgModule({
-  declarations: [GamesOverviewComponent, GameAddComponent, GameDetailComponent, AddRoundComponent, RoundListComponent],
+  declarations: [GamesOverviewComponent, GameAddComponent, GameDetailComponent, AddRoundComponent, RoundListComponent, EditRoundComponent],
   imports: [
     CommonModule,
     MatButtonModule,

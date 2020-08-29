@@ -1,0 +1,31 @@
+<form [formGroup]="this.roundForm">
+    <h1 mat-dialog-title>Runde hinzufügen</h1>
+    <div class="flex flex-col">
+        <mat-form-field class="w-full">
+            <mat-label>Spieler</mat-label>
+            <mat-select formControlName="player">
+                <mat-option *ngFor="let player of componentData.players" [value]="player">
+                    {{ player }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+            <mat-label>Wert</mat-label>
+            <input type="number" formControlName="value" matInput />
+        </mat-form-field>
+        <mat-radio-group formControlName="sign" class="flex flex-col">
+            <mat-radio-button value="+" class="py-2">Gewonnen</mat-radio-button>
+            <mat-radio-button value="-" class="py-2">Verloren</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-dialog-actions>
+        <button [disabled]="!this.roundForm.valid" mat-raised-button style="height: 36px; min-width: 100px;" color="primary" (click)="onUpdateRoundToGame()">
+            <div *ngIf="!isCalculatingTable; else spinner">Speichern</div>
+        </button>
+        <button mat-button mat-dialog-close>Abbrechen</button>
+        <button mat-button (click)="this.onDeleteGame()" >Löschen</button>
+    </mat-dialog-actions>
+    <ng-template #spinner>
+        <mat-spinner class="mx-auto" diameter="26" color="accent" mode="indeterminate"></mat-spinner>
+    </ng-template>
+</form>

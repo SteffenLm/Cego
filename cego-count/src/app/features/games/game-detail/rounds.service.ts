@@ -16,4 +16,16 @@ export class RoundsService {
     game.rounds.push(round);
     this.gamesService.updateGame(this.gameIndex, game);
   }
+
+  public updateRound(round: Round, index: number): void {
+    const game = this.gamesService.getGame(this.gameIndex);
+    game[index] = round;
+    this.gamesService.updateGame(this.gameIndex, game);
+  }
+
+  public deleteRound(index: number): void {
+    const game = this.gamesService.getGame(this.gameIndex);
+    game.rounds.splice(index, 1);
+    this.gamesService.updateGame(this.gameIndex, game);
+  }
 }
