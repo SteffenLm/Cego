@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Spiel löschen</h1>
+<div class="mb-2">
+ Willst du das Spiel {{ dialogData }} wirklich löschen?
+</div>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="this.dialogRef.close(true)">
+        Löschen
+    </button>
+    <button mat-button (click)="this.dialogRef.close(false)" >
+        Abbrechen
+    </button>
+</mat-dialog-actions>

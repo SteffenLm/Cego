@@ -21,9 +21,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { RoundListComponent } from './game-detail/round-list/round-list.component';
 import { EditRoundComponent } from './game-detail/edit-round/edit-round.component';
+import { DeleteRoundComponent } from './game-detail/delete-round/delete-round.component';
 
 @NgModule({
-  declarations: [GamesOverviewComponent, GameAddComponent, GameDetailComponent, AddRoundComponent, RoundListComponent, EditRoundComponent],
+  declarations: [
+    GamesOverviewComponent,
+    GameAddComponent,
+    GameDetailComponent,
+    AddRoundComponent,
+    RoundListComponent,
+    EditRoundComponent,
+    DeleteRoundComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,

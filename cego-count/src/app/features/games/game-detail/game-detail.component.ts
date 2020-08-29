@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GamesService } from '../shared/games.service';
 import { Game } from '../shared/game.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,7 @@ import { AddRoundComponent } from './add-round/add-round.component';
 import { Round } from '../shared/round.model';
 import { DialogData } from './dialogdata.model';
 import { RoundsService } from './rounds.service';
+import { DeleteRoundComponent } from './delete-round/delete-round.component';
 
 @Component({
   selector: 'app-game-detail',
@@ -39,13 +40,22 @@ export class GameDetailComponent implements OnInit {
 
   private reloadRounds(): void {
     this.game = this.gamesService.getGame(this.gameIndex);
-    this.rounds =  this.game.rounds;
+    this.rounds = this.game.rounds;
     this.players = this.game.players;
   }
 
   onDeleteGame(): void {
-    this.gamesService.deleteGame(this.gameIndex);
-    this.router.navigate(['/games']);
+    const dialogRef = this.dialog.open<DeleteRoundComponent, string, boolean>(DeleteRoundComponent, {
+      data: this.game.name,
+      panelClass: 'p-0',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((deleteGame: boolean) => {
+      if (deleteGame) {
+        this.gamesService.deleteGame(this.gameIndex);
+        this.router.navigate(['/games']);
+      }
+    });
   }
 
   onAddRoundDialog(): void {
