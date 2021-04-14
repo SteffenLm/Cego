@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /cego/
+Options +FollowSymLinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.html [L,QSA]
