@@ -15,14 +15,13 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/cego-count",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -30,13 +29,9 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/tailwind.scss",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "extra-webpack.config.js"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -72,12 +67,9 @@
           }
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cego-count:build",
-            "customWebpackConfig": {
-              "path": "extra-webpack.config.js"
-            }
+            "browserTarget": "cego-count:build"
           },
           "configurations": {
             "production": {
@@ -118,9 +110,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
