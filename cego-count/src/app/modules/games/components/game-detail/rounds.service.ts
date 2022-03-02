@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { GamesService } from '../shared/games.service';
-import { Round } from '../shared/round.model';
+import { Round } from '../../model/round.model';
+import { GamesService } from '../../services/games.service';
 
 @Injectable()
 export class RoundsService {
-
-  constructor(private gamesService: GamesService) { }
+  constructor(private gamesService: GamesService) {}
 
   public gameIndex: number;
-
 
   public addRound(round: Round): void {
     round.created = new Date();

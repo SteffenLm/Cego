@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageManager } from '../../../Storage/LocalStorage';
-import { Game } from './game.model';
-
+import { Game } from '../model/game.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GamesService extends LocalStorageManager<Game> {
-
   private games: Game[];
 
   constructor() {
@@ -48,7 +46,10 @@ export class GamesService extends LocalStorageManager<Game> {
 
   private sortArray(): void {
     this.games = this.games.sort((a, b) => {
-      return new Date(b.created).getMilliseconds() - new Date(a.created).getMilliseconds();
+      return (
+        new Date(b.created).getMilliseconds() -
+        new Date(a.created).getMilliseconds()
+      );
     });
   }
 }

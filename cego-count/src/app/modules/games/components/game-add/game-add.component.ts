@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { GamesService } from '../shared/games.service';
-import { Game } from '../shared/game.model';
+import { GamesService } from '../../services/games.service';
+import { Game } from '../../model/game.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,17 +12,23 @@ import { Router } from '@angular/router';
   animations: [
     trigger('item', [
       transition(':enter', [
-        style({ transform: 'scale(0.3)', opacity: 0 }),  // initial
-        animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
-          style({ transform: 'scale(1)', opacity: 1 }))  // final
-      ])
-    ])]
+        style({ transform: 'scale(0.3)', opacity: 0 }), // initial
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({ transform: 'scale(1)', opacity: 1 })
+        ), // final
+      ]),
+    ]),
+  ],
 })
 export class GameAddComponent implements OnInit {
-
   public form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private gamesService: GamesService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private gamesService: GamesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -31,8 +37,8 @@ export class GameAddComponent implements OnInit {
         this.formBuilder.control('', [Validators.required]),
         this.formBuilder.control('', [Validators.required]),
         this.formBuilder.control('', [Validators.required]),
-        this.formBuilder.control('', [Validators.required])
-      ])
+        this.formBuilder.control('', [Validators.required]),
+      ]),
     });
   }
   get players(): FormArray {

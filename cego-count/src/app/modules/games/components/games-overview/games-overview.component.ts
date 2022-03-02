@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
-import { GamesService } from '../shared/games.service';
-
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  query,
+  stagger,
+  animateChild,
+} from '@angular/animations';
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-games-overview',
@@ -10,26 +17,23 @@ import { GamesService } from '../shared/games.service';
   animations: [
     trigger('item', [
       transition(':enter', [
-        style({ opacity: 0 }),  // initial
-        animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
-          style({ opacity: 1 }))  // final
-      ])
+        style({ opacity: 0 }), // initial
+        animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)', style({ opacity: 1 })), // final
+      ]),
     ]),
     trigger('list', [
       transition(':enter', [
-        query('@item', stagger(50, animateChild()), { optional: true })
+        query('@item', stagger(50, animateChild()), { optional: true }),
       ]),
-    ])
-  ]
+    ]),
+  ],
 })
 export class GamesOverviewComponent implements OnInit {
-
   public games: any[];
 
-  constructor(private gamesService: GamesService) { }
+  constructor(private gamesService: GamesService) {}
 
   public ngOnInit(): void {
     this.games = this.gamesService.getGames();
   }
-
 }
