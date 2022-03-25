@@ -27,7 +27,7 @@ const materialUiModules = [
 ];
 
 @NgModule({
-  imports: materialUiModules,
-  exports: materialUiModules,
+  imports: [materialUiModules],
+  exports: [materialUiModules],
 })
 export class GamesMaterialModule {}

@@ -1,0 +1,14 @@
+<ng-container *ngIf="(isLoading$ | async) === false; else loadingSpinner">
+  <ng-container *ngIf="allGames$ | async as allGames">
+    <app-game-list [games]="allGames"></app-game-list>
+  </ng-container>
+  <app-fab-icon-button
+    (click)="onAddClick()"
+    icon="add"
+    color="primary"
+  ></app-fab-icon-button>
+</ng-container>
+
+<ng-template #loadingSpinner>
+  <div>Laden</div>
+</ng-template>

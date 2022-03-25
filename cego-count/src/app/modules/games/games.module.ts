@@ -11,6 +11,7 @@ import { GameDetailComponent } from './components/game-detail/game-detail.compon
 import { RoundListComponent } from './components/game-detail/round-list/round-list.component';
 import { GamesOverviewComponent } from './components/games-overview/games-overview.component';
 import { GamesMaterialModule } from './games.material.module';
+import { FabButtonModule } from '../ui/fab-button/fab-button.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GamesMaterialModule } from './games.material.module';
   ],
   imports: [
     CommonModule,
+    FabButtonModule,
     ReactiveFormsModule,
     GamesMaterialModule,
     GamesRoutingModule,

@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">Spiel erstellen</mat-toolbar>
+<mat-card id="creategamecard">
+  <form [formGroup]="this.formGroup" class="control-container">
+    <mat-form-field id="name" appearance="outline">
+      <input
+        autocomplete="off"
+        auto
+        matInput
+        type="text"
+        formControlName="name"
+        spellcheck="false"
+      />
+      <mat-label>Spiel</mat-label>
+    </mat-form-field>
+    <ng-container
+      formArrayName="players"
+      *ngFor="let player of this.playersControl.controls; let i = index"
+    >
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          autocomplete="off"
+          type="text"
+          spellcheck="false"
+          [formControlName]="i"
+        />
+        <mat-label>Mitspieler {{ i + 1 }}</mat-label>
+      </mat-form-field>
+    </ng-container>
+    <mat-error *ngIf="(showPlayerNamesNotUniqueError$ | async) === true"
+      >Alle Spieler müssen unterschiedliche Namen haben</mat-error
+    >
+  </form>
+</mat-card>
+<mat-divider></mat-divider>
+<div class="button-container">
+  <button
+    id="create"
+    mat-raised-button
+    (click)="onCreate()"
+    [disabled]="(this.disableCreateButton$ | async) === true"
+    color="primary"
+    type="button"
+  >
+    Erstellen
+  </button>
+  <button id="abort" type="button" mat-button (click)="onAbort()">
+    Abbrechen
+  </button>
+</div>

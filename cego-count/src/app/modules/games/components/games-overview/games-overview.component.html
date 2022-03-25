@@ -1,9 +1,21 @@
 <mat-action-list @list>
-    <button mat-list-item @item *ngFor='let game of games; let i = index' routerLink="{{ i }}">
-        <div matLine>{{ game.name }}</div>
-        <div matLine>{{ game.created | date }}</div>
-    </button>
+  <button
+    mat-list-item
+    @item
+    *ngFor="let game of games; let i = index"
+    routerLink="{{ i }}"
+  >
+    <div matLine>{{ game.name }}</div>
+    <div matLine>{{ game.created | date }}</div>
+  </button>
 </mat-action-list>
-<button style="position: fixed; margin-right: 1rem; margin-bottom: 1rem;" @item mat-fab class="right-0 bottom-0 outline-none focus:outline-none" color="primary" routerLink="add">
-    <mat-icon>add</mat-icon>
+<button
+  style="position: fixed; margin-right: 1rem; margin-bottom: 1rem"
+  @item
+  mat-fab
+  appFab
+  color="primary"
+  routerLink="add"
+>
+  <mat-icon>add</mat-icon>
 </button>

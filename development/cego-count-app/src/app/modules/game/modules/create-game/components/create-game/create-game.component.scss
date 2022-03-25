@@ -1,0 +1,50 @@
+#creategamecard {
+  max-height: 55vh;
+  overflow-y: auto;
+  box-shadow: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: 0;
+}
+
+#create {
+  margin-right: 1rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.75rem 16px;
+}
+
+.control-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  grid-gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .control-container {
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-areas:
+      " name        name "
+      " playerOne   playerTwo "
+      " playerThree playerFour "
+      " error       error";
+  }
+
+  #name {
+    grid-area: name;
+  }
+
+  mat-error {
+    grid-area: error;
+  }
+
+  .button-container {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,6 @@
+<mat-nav-list>
+  <a mat-list-item (click)="onGameClicked(game)" *ngFor="let game of games">
+    <div matLine>{{ game.name }}</div>
+    <mat-icon>chevron_right</mat-icon>
+  </a>
+</mat-nav-list>
